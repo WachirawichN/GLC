@@ -70,6 +70,8 @@ namespace GLM_CUDA
 
             __host__ __device__ mat4 operator / (float scalar);
             __host__ __device__ mat4& operator /= (float scalar);
+
+            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const mat4& matrix);
     };
 
     // Matrix exclusive operation

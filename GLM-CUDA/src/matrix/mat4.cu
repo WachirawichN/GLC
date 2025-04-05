@@ -7,18 +7,18 @@ namespace GLM_CUDA
     __host__ __device__ mat4::mat4()
     {
         value = new vec4[4];
-        value[0] = vec4();
-        value[1] = vec4();
-        value[2] = vec4();
-        value[3] = vec4();
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] = vec4();
+        }
     }
     __host__ __device__ mat4::mat4(float v0)
     {
         value = new vec4[4];
-        value[0] = vec4(v0);
-        value[1] = vec4(v0);
-        value[2] = vec4(v0);
-        value[3] = vec4(v0);
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] = vec4(v0);
+        }
     }
     __host__ __device__ mat4::mat4(vec4 v0, vec4 v1, vec4 v2, vec4 v3)
     {

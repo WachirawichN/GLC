@@ -103,6 +103,8 @@ namespace GLM_CUDA
 
             __host__ __device__ vec4 operator / (float scalar);
             __host__ __device__ vec4& operator /= (float scalar);
+
+            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const vec4& vector);
         };
 
     // Vector exclusive operation

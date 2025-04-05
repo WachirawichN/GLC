@@ -5,25 +5,22 @@ namespace GLM_CUDA
     __host__ __device__ vec4::vec4()
     {
         value = new float[4];
-    
-        value[0] = 0.0f;
-        value[1] = 0.0f;
-        value[2] = 0.0f;
-        value[3] = 0.0f;
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] = 0.0f;
+        }
     }
     __host__ __device__ vec4::vec4(float v0)
     {
         value = new float[4];
-    
-        value[0] = v0;
-        value[1] = v0;
-        value[2] = v0;
-        value[3] = v0;
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] = v0;
+        }
     }
     __host__ __device__ vec4::vec4(float v0, float v1, float v2, float v3)
     {
         value = new float[4];
-    
         value[0] = v0;
         value[1] = v1;
         value[2] = v2;
@@ -43,65 +40,111 @@ namespace GLM_CUDA
     {
         return indexProxy(value[index]);
     }
-    __host__ __device__ vec4& vec4::operator=(const vec4& input)
+    __host__ __device__ vec4& vec4::operator=(const vec4& vector)
     {
-        value[0] = input[0];
-        value[1] = input[1];
-        value[2] = input[2];
-        value[3] = input[3];
+        if (this != &vector)
+        {
+            // Prevent memory leak
+            delete[] value;
+            value = new float[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                value[i] = vector[i];
+            }
+
+            // Copy data - Using CUDA's memcpy if possible (More efficient, still contain a bug)
+            /*
+            #ifdef __CUDA_ARCH__
+                cudaMemcpy(
+                    value,
+                    matrix,
+                    3 * sizeof(vec3),
+                    cudaMemcpyDeviceToDevice
+                );
+            #else
+                std::copy(matrix[0], matrix[2], value);
+            #endif
+            */
+        }
         return *this;
     }
 
 
-    __host__ __device__ vec4 vec4::operator+(vec4 input)
+    __host__ __device__ vec4 vec4::operator+(vec4 vector)
     {
-        return vec4(value[0] + input[0], value[1] + input[1], value[2] + input[2], value[3] + input[3]);
+        vec4 out;
+        for (int i = 0; i < 4; i++)
+        {
+            out[i] = value[i] + vector[i];
+        }
+        return out;
     }
-    __host__ __device__ vec4& vec4::operator+=(vec4& input)
+    __host__ __device__ vec4& vec4::operator+=(vec4& vector)
     {
-        value[0] += input[0];
-        value[1] += input[1];
-        value[2] += input[2];
-        value[3] += input[3];
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] += vector[i];
+        }
         return *this;
     }
 
-    __host__ __device__ vec4 vec4::operator-(vec4 input)
+    __host__ __device__ vec4 vec4::operator-(vec4 vector)
     {
-        return vec4(value[0] - input[0], value[1] - input[1], value[2] - input[2], value[3] - input[3]);
+        vec4 out;
+        for (int i = 0; i < 4; i++)
+        {
+            out[i] = value[i] - vector[i];
+        }
+        return out;
     }
-    __host__ __device__ vec4& vec4::operator-=(vec4& input)
+    __host__ __device__ vec4& vec4::operator-=(vec4& vector)
     {
-        value[0] -= input[0];
-        value[1] -= input[1];
-        value[2] -= input[2];
-        value[3] -= input[3];
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] -= vector[i];
+        }
         return *this;
     }
 
     __host__ __device__ vec4 vec4::operator*(float scalar)
     {
-        return vec4(value[0] * scalar, value[1] * scalar, value[2] * scalar, value[3] * scalar);
+        vec4 out;
+        for (int i = 0; i < 4; i++)
+        {
+            out[i] = value[i] * scalar;
+        }
+        return out;
     }
     __host__ __device__ vec4& vec4::operator*=(float scalar)
     {
-        value[0] *= scalar;
-        value[1] *= scalar;
-        value[2] *= scalar;
-        value[3] *= scalar;
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] *= scalar;
+        }
         return *this;
     }
 
     __host__ __device__ vec4 vec4::operator/(float scalar)
     {
-        return vec4(value[0] / scalar, value[1] / scalar, value[2] / scalar, value[3] / scalar);
+        vec4 out;
+        for (int i = 0; i < 4; i++)
+        {
+            out[i] = value[i] / scalar;
+        }
+        return out;
     }
     __host__ __device__ vec4& vec4::operator/=(float scalar)
     {
-        value[0] /= scalar;
-        value[1] /= scalar;
-        value[2] /= scalar;
-        value[3] /= scalar;
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] /= scalar;
+        }
         return *this;
+    }
+
+    __host__ __device__ std::ostream& operator << (std::ostream& os, const vec4& vector)
+    {
+        return os << "[" << vector[0] << ", " << vector[1] << ", " << vector[2] << ", " << vector[3] << "]";
     }
 }

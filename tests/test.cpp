@@ -8,8 +8,8 @@
 
 int main()
 {
-    GLM_CUDA::vec3 testVec1(1.0f);
-    GLM_CUDA::vec3 testVec2(5.0f, 6.0f, 7.0f);
+    GLM_CUDA::vec4 testVec1(1.0f);
+    GLM_CUDA::vec4 testVec2(5.0f, 6.0f, 7.0f, 8.0f);
 
     testVec1 += testVec2;
     std::cout << testVec1 << std::endl << std::endl;

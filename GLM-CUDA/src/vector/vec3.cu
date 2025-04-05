@@ -141,4 +141,9 @@ namespace GLM_CUDA
         }
         return *this;
     }
+
+    __host__ __device__ std::ostream& operator << (std::ostream& os, const vec3& vector)
+    {
+        return os << "[" << vector[0] << ", " << vector[1] << ", " << vector[2] << "]";
+    }
 }

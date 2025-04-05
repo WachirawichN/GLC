@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class indexProxy
 {
     private:
@@ -56,7 +58,6 @@ namespace GLM_CUDA
             __host__ __device__ vec3(float v0, float v1, float v2);
             __host__ __device__ ~vec3();
 
-
             __host__ __device__ float operator [] (unsigned int index) const;
             __host__ __device__ indexProxy operator [] (unsigned int index);
             __host__ __device__ vec3& operator = (const vec3& vector);
@@ -72,6 +73,8 @@ namespace GLM_CUDA
 
             __host__ __device__ vec3 operator / (float scalar);
             __host__ __device__ vec3& operator /= (float scalar);
+            
+            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const vec3& vector);
         };
 
     class vec4

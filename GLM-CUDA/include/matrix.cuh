@@ -14,6 +14,36 @@
 
 namespace GLM_CUDA
 {
+    class mat2
+    {
+        private:
+            vec2* value;
+        public:
+            __host__ __device__ mat2();
+            __host__ __device__ mat2(float v0);
+            __host__ __device__ mat2(vec2 v0, vec2 v1);
+            __host__ __device__ ~mat2();
+
+            __host__ __device__ vec3& operator [] (unsigned int index);
+            __host__ __device__ const vec3& operator [] (unsigned int index) const;
+            __host__ __device__ mat2& operator = (const mat2& matrix);
+
+            __host__ __device__ mat2 operator + (mat2 matrix);
+            __host__ __device__ mat2& operator += (mat2& matrix);
+
+            __host__ __device__ mat2 operator - (mat2 matrix);
+            __host__ __device__ mat2& operator -= (mat2& matrix);
+
+            __host__ __device__ mat2 operator * (float scalar);
+            __host__ __device__ mat2 operator * (mat2 matrix);
+            __host__ __device__ mat2& operator *= (float scalar);
+            __host__ __device__ mat2& operator *= (mat2 matrix);
+
+            __host__ __device__ mat2 operator / (float scalar);
+            __host__ __device__ mat2& operator /= (float scalar);
+
+            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const mat2& matrix);
+    };
     class mat3
     {
         private:

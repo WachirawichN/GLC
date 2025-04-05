@@ -1,0 +1,16 @@
+include_directories(include)
+
+# Collect all .cu files for compilation
+file(GLOB_RECURSE VECTOR_SOURCES src/vector/*.cu)
+file(GLOB_RECURSE UTILITY_SOURCES src/utility/*.cu)
+file(GLOB_RECURSE MATRIX_SOURCES src/matrix/*.cu)
+
+add_library(
+    GLM-CUDA
+    STATIC
+    ${VECTOR_SOURCES}
+    ${UTILITY_SOURCES}
+    ${MATRIX_SOURCES}
+)
+
+set_target_properties(linearAlgebra PROPERTIES CUDA_SEPARABLE_COMPILATION ON)

@@ -1,6 +1,16 @@
 #pragma once
 
+#include <iostream>
+#include <string>
 #include "vector.cuh"
+
+// This will be weird due to how weird GLSL's matrix structure is. (Column first then Row)
+// 3x3 Matrix example bruh
+// ┌ ┌   ┐ ┌   ┐ ┌   ┐ ┐
+// | | a | | d | | g | |
+// | | b | | e | | h | |
+// | | c | | f | | i | |
+// └ └   ┘ └   ┘ └   ┘ ┘
 
 namespace GLM_CUDA
 {
@@ -31,6 +41,8 @@ namespace GLM_CUDA
 
             __host__ __device__ mat3 operator / (float scalar);
             __host__ __device__ mat3& operator /= (float scalar);
+
+            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const mat3& matrix);
     };
     class mat4
     {

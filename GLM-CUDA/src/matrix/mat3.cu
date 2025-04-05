@@ -7,23 +7,25 @@ namespace GLM_CUDA
     __host__ __device__ mat3::mat3()
     {
         value = new vec3[3];
-        value[0] = vec3();
-        value[1] = vec3();
-        value[2] = vec3();
+        for (int i = 0; i < 3; i++)
+        {
+            value[i] = vec3();
+        }
     }
     __host__ __device__ mat3::mat3(float v0)
     {
         value = new vec3[3];
-        value[0] = vec3(v0);
-        value[1] = vec3(v0);
-        value[2] = vec3(v0);
+        for (int i = 0; i < 3; i++)
+        {
+            value[i] = vec3(v0);
+        }
     }
     __host__ __device__ mat3::mat3(vec3 v0, vec3 v1, vec3 v2)
     {
         value = new vec3[3];
-        value[0] = vec3(v0);
-        value[1] = vec3(v1);
-        value[2] = vec3(v2);
+        value[0] = v0;
+        value[1] = v1;
+        value[2] = v2;
     }
     __host__ __device__ mat3::~mat3()
     {
@@ -163,5 +165,48 @@ namespace GLM_CUDA
             value[i] /= scalar;
         }
         return *this;
+    }
+
+    __host__ __device__ std::ostream& operator << (std::ostream& os, const mat3& matrix)
+    {
+        // Expected output
+        // ┌ ┌   ┐ ┌   ┐ ┌   ┐ ┐
+        // | | a | | d | | g | |
+        // | | b | | e | | h | |
+        // | | c | | f | | i | |
+        // └ └   ┘ └   ┘ └   ┘ ┘
+
+        // Check for maximum length of every number inside matrix
+        unsigned int maxLength = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (std::to_string(matrix[i][j]).length() > maxLength)
+                {
+                    maxLength = std::to_string(matrix[i][j]).length();
+                }
+            }
+        }
+
+        for (int row = 0; row < 5; row++)
+        {
+            std::string leftBracket = (row == 0) ? "┌" : (row == 5) ? "└" : "|";
+            std::string rightBracket = (row == 0) ? "┐" : (row == 5) ? "┘" : "|";
+            os << leftBracket << " "; 
+
+            for (int column = 0; column < 3; column++)
+            {
+                std::string number = (
+                    (row == 0 || row == 5) ?
+                    std::string(maxLength, ' ') :
+                    std::string(maxLength - std::to_string(matrix[column][row]).length(), ' ') + std::to_string(matrix[column][row])
+                );
+                os << leftBracket << " " << number << " " << rightBracket << " ";
+            }
+
+            os << rightBracket;
+        }
+        return os;
     }
 }

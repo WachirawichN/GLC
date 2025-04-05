@@ -46,6 +46,8 @@ namespace GLM_CUDA
 
             __host__ __device__ vec2 operator / (float scalar);
             __host__ __device__ vec2& operator /= (float scalar);
+
+            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const vec2& vector);
         };
 
     class vec3

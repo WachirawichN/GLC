@@ -5,21 +5,22 @@ namespace GLM_CUDA
     __host__ __device__ vec2::vec2()
     {
         value = new float[2];
-
-        value[0] = 0.0f;
-        value[1] = 0.0f;
+        for (int i = 0; i < 2; i++)
+        {
+            value[i] = 0.0f;
+        }
     }
     __host__ __device__ vec2::vec2(float v0)
     {
         value = new float[2];
-
-        value[0] = v0;
-        value[1] = v0;
+        for (int i = 0; i < 2; i++)
+        {
+            value[i] = v0;
+        }
     }
     __host__ __device__ vec2::vec2(float v0, float v1)
     {
         value = new float[2];
-
         value[0] = v0;
         value[1] = v1;
     }
@@ -37,55 +38,111 @@ namespace GLM_CUDA
     {
         return indexProxy(value[index]);
     }
-    __host__ __device__ vec2& vec2::operator=(const vec2& input)
+    __host__ __device__ vec2& vec2::operator=(const vec2& vector)
     {
-        value[0] = input[0];
-        value[1] = input[1];
+        if (this != &vector)
+        {
+            // Prevent memory leak
+            delete[] value;
+            value = new float[2];
+
+            for (int i = 0; i < 2; i++)
+            {
+                value[i] = vector[i];
+            }
+
+            // Copy data - Using CUDA's memcpy if possible (More efficient, still contain a bug)
+            /*
+            #ifdef __CUDA_ARCH__
+                cudaMemcpy(
+                    value,
+                    matrix,
+                    3 * sizeof(vec3),
+                    cudaMemcpyDeviceToDevice
+                );
+            #else
+                std::copy(matrix[0], matrix[2], value);
+            #endif
+            */
+        }
         return *this;
     }
 
 
-    __host__ __device__ vec2 vec2::operator+(vec2 input)
+    __host__ __device__ vec2 vec2::operator+(vec2 vector)
     {
-        return vec2(value[0] + input[0], value[1] + input[1]);
+        vec2 out;
+        for (int i = 0; i < 2; i++)
+        {
+            out[i] = value[i] + vector[i];
+        }
+        return out;
     }
-    __host__ __device__ vec2& vec2::operator+=(vec2& input)
+    __host__ __device__ vec2& vec2::operator+=(vec2& vector)
     {
-        value[0] += input[0];
-        value[1] += input[1];
+        for (int i = 0; i < 2; i++)
+        {
+            value[i] += vector[i];
+        }
         return *this;
     }
 
-    __host__ __device__ vec2 vec2::operator-(vec2 input)
+    __host__ __device__ vec2 vec2::operator-(vec2 vector)
     {
-        return vec2(value[0] - input[0], value[1] - input[1]);
+        vec2 out;
+        for (int i = 0; i < 2; i++)
+        {
+            out[i] = value[i] - vector[i];
+        }
+        return out;
     }
-    __host__ __device__ vec2& vec2::operator-=(vec2& input)
+    __host__ __device__ vec2& vec2::operator-=(vec2& vector)
     {
-        value[0] -= input[0];
-        value[1] -= input[1];
+        for (int i = 0; i < 2; i++)
+        {
+            value[i] -= vector[i];
+        }
         return *this;
     }
 
     __host__ __device__ vec2 vec2::operator*(float scalar)
     {
-        return vec2(value[0] * scalar, value[1] * scalar);
+        vec2 out;
+        for (int i = 0; i < 2; i++)
+        {
+            out[i] = value[i] * scalar;
+        }
+        return out;
     }
     __host__ __device__ vec2& vec2::operator*=(float scalar)
     {
-        value[0] *= scalar;
-        value[1] *= scalar;
+        for (int i = 0; i < 2; i++)
+        {
+            value[i] *= scalar;
+        }
         return *this;
     }
 
     __host__ __device__ vec2 vec2::operator/(float scalar)
     {
-        return vec2(value[0] / scalar, value[1] / scalar);
+        vec2 out;
+        for (int i = 0; i < 2; i++)
+        {
+            out[i] = value[i] / scalar;
+        }
+        return out;
     }
     __host__ __device__ vec2& vec2::operator/=(float scalar)
     {
-        value[0] /= scalar;
-        value[1] /= scalar;
+        for (int i = 0; i < 2; i++)
+        {
+            value[i] /= scalar;
+        }
         return *this;
+    }
+
+    __host__ __device__ std::ostream& operator << (std::ostream& os, const vec2& vector)
+    {
+        return os << "[" << vector[0] << ", " << vector[1] << "]";
     }
 }

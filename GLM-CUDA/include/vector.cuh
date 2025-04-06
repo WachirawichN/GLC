@@ -48,7 +48,7 @@ namespace GLM_CUDA
             __host__ __device__ vec2 operator / (float scalar);
             __host__ __device__ vec2& operator /= (float scalar);
 
-            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const vec2& vector);
+            __host__ friend std::ostream& operator << (std::ostream& os, const vec2& vector);
         };
 
     class vec3
@@ -78,7 +78,7 @@ namespace GLM_CUDA
             __host__ __device__ vec3 operator / (float scalar);
             __host__ __device__ vec3& operator /= (float scalar);
             
-            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const vec3& vector);
+            __host__ friend std::ostream& operator << (std::ostream& os, const vec3& vector);
         };
 
     class vec4
@@ -109,7 +109,7 @@ namespace GLM_CUDA
             __host__ __device__ vec4 operator / (float scalar);
             __host__ __device__ vec4& operator /= (float scalar);
 
-            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const vec4& vector);
+            __host__ friend std::ostream& operator << (std::ostream& os, const vec4& vector);
         };
 
     // Vector exclusive operation

@@ -16,7 +16,7 @@ namespace GLM_CUDA
         return out;
     }
     */
-    __host__ __device__ mat3 transpose(mat3 matrix)
+    __host__ __device__ mat3 transpose(const mat3& matrix)
     {
         mat3 out;
         for (int row = 0; row < 3; row++)

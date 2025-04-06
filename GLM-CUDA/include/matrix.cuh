@@ -66,7 +66,7 @@ namespace GLM_CUDA
             __host__ __device__ mat3& operator -= (mat3& matrix);
 
             __host__ __device__ mat3 operator * (float scalar);
-            __host__ __device__ mat3 operator * (mat3 matrix);
+            __host__ __device__ mat3 operator * (const mat3& matrix);
             __host__ __device__ mat3& operator *= (float scalar);
             __host__ __device__ mat3& operator *= (mat3 matrix);
 
@@ -107,6 +107,6 @@ namespace GLM_CUDA
 
     // Matrix exclusive operation
     __host__ __device__ mat2 transpose(mat2 matrix);
-    __host__ __device__ mat3 transpose(mat3 matrix);
+    __host__ __device__ mat3 transpose(const mat3& matrix);
     __host__ __device__ mat4 transpose(mat4 matrix);
 }

@@ -115,15 +115,15 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ mat3 mat3::operator*(mat3 matrix)
+    __host__ __device__ mat3 mat3::operator*(const mat3& matrix)
     {
         mat3 out;
-        mat3 transposed = transpose(matrix);
+        mat3 transposed = transpose(*this);
         for (int column = 0; column < 3; column++)
         {
             for (int row = 0; row < 3; row++)
             {
-                out[column][row] = dot(value[column], transposed[row]);
+                out[row][column] = dot(transposed[column], matrix[row]);
             }
         }
         return out;

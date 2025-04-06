@@ -20,10 +20,7 @@ namespace GLM_CUDA
     }
     __host__ __device__ vec3::vec3(float v0, float v1, float v2)
     {
-        value = new float[3];
-        value[0] = v0;
-        value[1] = v1;
-        value[2] = v2;
+        value = new float[3] {v0, v1, v2};
     }
     __host__ __device__ vec3::vec3(const vec3& vector)
     {

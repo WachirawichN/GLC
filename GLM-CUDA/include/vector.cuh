@@ -28,6 +28,7 @@ namespace GLM_CUDA
             __host__ __device__ vec2();
             __host__ __device__ vec2(float v0);
             __host__ __device__ vec2(float v0, float v1);
+            __host__ __device__ vec2(const vec2& vector);
             __host__ __device__ ~vec2();
 
 
@@ -88,6 +89,7 @@ namespace GLM_CUDA
             __host__ __device__ vec4();
             __host__ __device__ vec4(float v0);
             __host__ __device__ vec4(float v0, float v1, float v2, float v3);
+            __host__ __device__ vec4(const vec4& vector);
             __host__ __device__ ~vec4();
 
 

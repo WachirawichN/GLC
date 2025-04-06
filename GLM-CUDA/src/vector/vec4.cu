@@ -20,11 +20,15 @@ namespace GLM_CUDA
     }
     __host__ __device__ vec4::vec4(float v0, float v1, float v2, float v3)
     {
+        value = new float[4] {v0, v1, v2, v3};
+    }
+    __host__ __device__ vec4::vec4(const vec4& vector)
+    {
         value = new float[4];
-        value[0] = v0;
-        value[1] = v1;
-        value[2] = v2;
-        value[3] = v3;
+        for (int i = 0; i < 4; i++)
+        {
+            value[i] = vector[i];
+        }
     }
     __host__ __device__ vec4::~vec4()
     {
@@ -45,8 +49,11 @@ namespace GLM_CUDA
         if (this != &vector)
         {
             // Prevent memory leak
-            delete[] value;
-            value = new float[4];
+            if (value)
+            {
+                delete[] value;
+                value = new float[4];
+            }
 
             for (int i = 0; i < 4; i++)
             {

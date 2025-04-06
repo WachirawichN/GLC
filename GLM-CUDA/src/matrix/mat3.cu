@@ -22,10 +22,7 @@ namespace GLM_CUDA
     }
     __host__ __device__ mat3::mat3(const vec3& v0, const vec3& v1, const vec3& v2)
     {
-        value = new vec3[3];
-        value[0] = v0;
-        value[1] = v1;
-        value[2] = v2;
+        value = new vec3[3] {v0, v1, v2};
     }
     __host__ __device__ mat3::~mat3()
     {
@@ -170,7 +167,7 @@ namespace GLM_CUDA
         return *this;
     }
 
-    __host__ __device__ std::ostream& operator << (std::ostream& os, const mat3& matrix)
+    __host__ std::ostream& operator << (std::ostream& os, const mat3& matrix)
     {
         // Expected output
         // |                   |

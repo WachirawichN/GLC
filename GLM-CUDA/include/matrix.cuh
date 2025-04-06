@@ -43,7 +43,7 @@ namespace GLM_CUDA
             __host__ __device__ mat2 operator / (float scalar);
             __host__ __device__ mat2& operator /= (float scalar);
 
-            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const mat2& matrix);
+            __host__ friend std::ostream& operator << (std::ostream& os, const mat2& matrix);
     };
     class mat3
     {
@@ -73,7 +73,7 @@ namespace GLM_CUDA
             __host__ __device__ mat3 operator / (float scalar);
             __host__ __device__ mat3& operator /= (float scalar);
 
-            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const mat3& matrix);
+            __host__ friend std::ostream& operator << (std::ostream& os, const mat3& matrix);
     };
     class mat4
     {
@@ -102,7 +102,7 @@ namespace GLM_CUDA
             __host__ __device__ mat4 operator / (float scalar);
             __host__ __device__ mat4& operator /= (float scalar);
 
-            __host__ __device__ friend std::ostream& operator << (std::ostream& os, const mat4& matrix);
+            __host__ friend std::ostream& operator << (std::ostream& os, const mat4& matrix);
     };
 
     // Matrix exclusive operation

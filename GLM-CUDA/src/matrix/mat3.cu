@@ -20,7 +20,7 @@ namespace GLM_CUDA
             value[i] = vec3(v0);
         }
     }
-    __host__ __device__ mat3::mat3(vec3 v0, vec3 v1, vec3 v2)
+    __host__ __device__ mat3::mat3(const vec3& v0, const vec3& v1, const vec3& v2)
     {
         value = new vec3[3];
         value[0] = v0;
@@ -45,8 +45,11 @@ namespace GLM_CUDA
         if (this != &matrix)
         {
             // Prevent memory leak
-            delete[] value;
-            value = new vec3[3];
+            if (value)
+            {
+                delete[] value;
+                value = new vec3[3];
+            }
 
             for (int i = 0; i < 3; i++)
             {
@@ -170,11 +173,11 @@ namespace GLM_CUDA
     __host__ __device__ std::ostream& operator << (std::ostream& os, const mat3& matrix)
     {
         // Expected output
-        // ┌ ┌   ┐ ┌   ┐ ┌   ┐ ┐
+        // |                   |
         // | | a | | d | | g | |
         // | | b | | e | | h | |
         // | | c | | f | | i | |
-        // └ └   ┘ └   ┘ └   ┘ ┘
+        // |                   |
 
         // Check for maximum length of every number inside matrix
         unsigned int maxLength = 0;
@@ -191,21 +194,26 @@ namespace GLM_CUDA
 
         for (int row = 0; row < 5; row++)
         {
-            std::string leftBracket = (row == 0) ? "┌" : (row == 5) ? "└" : "|";
-            std::string rightBracket = (row == 0) ? "┐" : (row == 5) ? "┘" : "|";
-            os << leftBracket << " "; 
+            os << "|" << " "; 
 
             for (int column = 0; column < 3; column++)
             {
-                std::string number = (
-                    (row == 0 || row == 5) ?
-                    std::string(maxLength, ' ') :
-                    std::string(maxLength - std::to_string(matrix[column][row]).length(), ' ') + std::to_string(matrix[column][row])
-                );
-                os << leftBracket << " " << number << " " << rightBracket << " ";
+                std::string bracket;
+                std::string numStr;
+                if (row == 0 || row == 4)
+                {
+                    bracket = " ";
+                    numStr = std::string(maxLength, ' ');
+                }
+                else
+                {
+                    bracket = "|";
+                    numStr = std::string(maxLength - std::to_string(matrix[column][row - 1]).length(), ' ') + std::to_string(matrix[column][row - 1]);
+                }
+                os << bracket << " " << numStr << " " << bracket << " ";
             }
 
-            os << rightBracket;
+            os << "|" << "\n";
         }
         return os;
     }

@@ -14,6 +14,7 @@ namespace GLM_CUDA
         }
         return out;
     }
+    /*
     __host__ __device__ GLM_CUDA::mat4 dot(GLM_CUDA::mat4 a, GLM_CUDA::mat4 b)
     {
         GLM_CUDA::mat4 out;
@@ -26,6 +27,7 @@ namespace GLM_CUDA
         }
         return out;
     }
+    */
     __host__ __device__ float dot(GLM_CUDA::vec2 a, GLM_CUDA::vec2 b)
     {
         float sum = 0;

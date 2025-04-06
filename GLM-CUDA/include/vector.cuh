@@ -58,6 +58,7 @@ namespace GLM_CUDA
             __host__ __device__ vec3();
             __host__ __device__ vec3(float v0);
             __host__ __device__ vec3(float v0, float v1, float v2);
+            __host__ __device__ vec3(const vec3& vector);
             __host__ __device__ ~vec3();
 
             __host__ __device__ float operator [] (unsigned int index) const;

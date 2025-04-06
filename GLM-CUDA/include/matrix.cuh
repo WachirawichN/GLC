@@ -11,6 +11,7 @@
 // | | b | | e | | h | |
 // | | c | | f | | i | |
 // └ └   ┘ └   ┘ └   ┘ ┘
+// Printing out matrix will result in slighty different formation than this tho, console doesn't support printing those special char.
 
 namespace GLM_CUDA
 {
@@ -51,7 +52,7 @@ namespace GLM_CUDA
         public:
             __host__ __device__ mat3();
             __host__ __device__ mat3(float v0);
-            __host__ __device__ mat3(vec3 v0, vec3 v1, vec3 v2);
+            __host__ __device__ mat3(const vec3& v0, const vec3& v1, const vec3& v2);
             __host__ __device__ ~mat3();
 
             __host__ __device__ vec3& operator [] (unsigned int index);
@@ -105,6 +106,7 @@ namespace GLM_CUDA
     };
 
     // Matrix exclusive operation
+    __host__ __device__ mat2 transpose(mat2 matrix);
     __host__ __device__ mat3 transpose(mat3 matrix);
     __host__ __device__ mat4 transpose(mat4 matrix);
 }

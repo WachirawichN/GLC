@@ -66,11 +66,11 @@ namespace GLM_CUDA
             __host__ __device__ indexProxy operator [] (unsigned int index);
             __host__ __device__ vec3& operator = (const vec3& vector);
 
-            __host__ __device__ vec3 operator + (vec3 vector);
-            __host__ __device__ vec3& operator += (vec3& vector);
+            __host__ __device__ vec3 operator + (const vec3& vector);
+            __host__ __device__ vec3& operator += (const vec3& vector);
 
-            __host__ __device__ vec3 operator - (vec3 vector);
-            __host__ __device__ vec3& operator -= (vec3& vector);
+            __host__ __device__ vec3 operator - (const vec3& vector);
+            __host__ __device__ vec3& operator -= (const vec3& vector);
 
             __host__ __device__ vec3 operator * (float scalar);
             __host__ __device__ vec3& operator *= (float scalar);

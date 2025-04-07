@@ -70,7 +70,7 @@ namespace GLM_CUDA
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator+(mat3 matrix)
+    __host__ __device__ mat3 mat3::operator+(const mat3& matrix)
     {
         mat3 out;
         for (int i = 0; i < 3; ++i)
@@ -79,7 +79,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator+=(mat3& matrix)
+    __host__ __device__ mat3& mat3::operator+=(const mat3& matrix)
     {
         for (int i = 0; i < 3; ++i)
         {
@@ -88,7 +88,7 @@ namespace GLM_CUDA
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator-(mat3 matrix)
+    __host__ __device__ mat3 mat3::operator-(const mat3& matrix)
     {
         mat3 out;
         for (int i = 0; i < 3; ++i)
@@ -97,7 +97,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator-=(mat3& matrix)
+    __host__ __device__ mat3& mat3::operator-=(const mat3& matrix)
     {
         for (int i = 0; i < 3; ++i)
         {
@@ -136,14 +136,14 @@ namespace GLM_CUDA
         }
         return *this;
     }
-    __host__ __device__ mat3& mat3::operator*=(mat3 matrix)
+    __host__ __device__ mat3& mat3::operator*=(const mat3& matrix)
     {
-        mat3 transposed = transpose(matrix);
+        mat3 transposed = transpose(*this);
         for (int column = 0; column < 3; column++)
         {
             for (int row = 0; row < 3; row++)
             {
-                value[column][row] = dot(value[column], transposed[row]);
+                value[row][column] = dot(transposed[column], matrix[row]);
             }
         }
         return *this;

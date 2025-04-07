@@ -22,7 +22,22 @@ int main()
         GLM_CUDA::vec3(2.25f, 0.9f, 2.3f)
     );
 
-    GLM_CUDA::mat3 matMul = testMat1 * testMat2;
-    std::cout << matMul << std::endl;
+    std::cout << testMat1 * testMat2 << std::endl;
+
+    testMat1 *= testMat2;
+    std::cout << testMat1 << std::endl;
+
+    testMat1 += testMat2;
+    std::cout << testMat1 << std::endl;
+
+    std::cout << testMat1 - testMat2 << std::endl;
+
+    testMat1 *= 2.0f;
+    std::cout << testMat1 << std::endl;
+
+    std::cout << testMat1 / 2 << std::endl;
+
+    testMat1 /= 2.0f;
+    std::cout << testMat1 << std::endl;
     return 0;
 }

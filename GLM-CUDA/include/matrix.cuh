@@ -59,16 +59,16 @@ namespace GLM_CUDA
             __host__ __device__ const vec3& operator [] (unsigned int index) const;
             __host__ __device__ mat3& operator = (const mat3& matrix);
 
-            __host__ __device__ mat3 operator + (mat3 matrix);
-            __host__ __device__ mat3& operator += (mat3& matrix);
+            __host__ __device__ mat3 operator + (const mat3& matrix);
+            __host__ __device__ mat3& operator += (const mat3& matrix);
 
-            __host__ __device__ mat3 operator - (mat3 matrix);
-            __host__ __device__ mat3& operator -= (mat3& matrix);
+            __host__ __device__ mat3 operator - (const mat3& matrix);
+            __host__ __device__ mat3& operator -= (const mat3& matrix);
 
             __host__ __device__ mat3 operator * (float scalar);
             __host__ __device__ mat3 operator * (const mat3& matrix);
             __host__ __device__ mat3& operator *= (float scalar);
-            __host__ __device__ mat3& operator *= (mat3 matrix);
+            __host__ __device__ mat3& operator *= (const mat3& matrix);
 
             __host__ __device__ mat3 operator / (float scalar);
             __host__ __device__ mat3& operator /= (float scalar);

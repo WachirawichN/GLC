@@ -78,7 +78,7 @@ namespace GLM_CUDA
     }
 
 
-    __host__ __device__ vec3 vec3::operator+(vec3 vector)
+    __host__ __device__ vec3 vec3::operator+(const vec3& vector)
     {
         vec3 out;
         for (int i = 0; i < 3; i++)
@@ -87,7 +87,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ vec3& vec3::operator+=(vec3& vector)
+    __host__ __device__ vec3& vec3::operator+=(const vec3& vector)
     {
         for (int i = 0; i < 3; i++)
         {
@@ -96,7 +96,7 @@ namespace GLM_CUDA
         return *this;
     }
 
-    __host__ __device__ vec3 vec3::operator-(vec3 vector)
+    __host__ __device__ vec3 vec3::operator-(const vec3& vector)
     {
         vec3 out;
         for (int i = 0; i < 3; i++)
@@ -105,7 +105,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ vec3& vec3::operator-=(vec3& vector)
+    __host__ __device__ vec3& vec3::operator-=(const vec3& vector)
     {
         for (int i = 0; i < 3; i++)
         {

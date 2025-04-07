@@ -78,7 +78,7 @@ namespace GLM_CUDA
     }
 
 
-    __host__ __device__ vec4 vec4::operator+(vec4 vector)
+    __host__ __device__ vec4 vec4::operator+(const vec4& vector)
     {
         vec4 out;
         for (int i = 0; i < 4; i++)
@@ -87,7 +87,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ vec4& vec4::operator+=(vec4& vector)
+    __host__ __device__ vec4& vec4::operator+=(const vec4& vector)
     {
         for (int i = 0; i < 4; i++)
         {
@@ -96,7 +96,7 @@ namespace GLM_CUDA
         return *this;
     }
 
-    __host__ __device__ vec4 vec4::operator-(vec4 vector)
+    __host__ __device__ vec4 vec4::operator-(const vec4& vector)
     {
         vec4 out;
         for (int i = 0; i < 4; i++)
@@ -105,7 +105,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ vec4& vec4::operator-=(vec4& vector)
+    __host__ __device__ vec4& vec4::operator-=(const vec4& vector)
     {
         for (int i = 0; i < 4; i++)
         {

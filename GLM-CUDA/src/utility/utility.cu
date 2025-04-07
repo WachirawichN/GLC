@@ -2,9 +2,21 @@
 
 namespace GLM_CUDA
 {
-    __host__ __device__ GLM_CUDA::mat3 dot(GLM_CUDA::mat3 a, GLM_CUDA::mat3 b)
+    __host__ __device__ mat2 dot(const mat2& a, const mat2& b)
     {
-        GLM_CUDA::mat3 out;
+        mat2 out;
+        for (int column = 0; column < 2; column++)
+        {
+            for (int row = 0; row < 2; row++)
+            {
+                out[column][row] = a[column][row] * b[column][row];
+            }
+        }
+        return out;
+    }
+    __host__ __device__ mat3 dot(const mat3& a, const mat3& b)
+    {
+        mat3 out;
         for (int column = 0; column < 3; column++)
         {
             for (int row = 0; row < 3; row++)
@@ -14,10 +26,9 @@ namespace GLM_CUDA
         }
         return out;
     }
-    /*
-    __host__ __device__ GLM_CUDA::mat4 dot(GLM_CUDA::mat4 a, GLM_CUDA::mat4 b)
+    __host__ __device__ mat4 dot(const mat4& a, const mat4& b)
     {
-        GLM_CUDA::mat4 out;
+        mat4 out;
         for (int column = 0; column < 4; column++)
         {
             for (int row = 0; row < 4; row++)
@@ -27,8 +38,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    */
-    __host__ __device__ float dot(GLM_CUDA::vec2 a, GLM_CUDA::vec2 b)
+    __host__ __device__ float dot(const vec2& a, const vec2& b)
     {
         float sum = 0;
         for (int axis = 0; axis < 2; axis++)
@@ -37,7 +47,7 @@ namespace GLM_CUDA
         }
         return sum;
     }
-    __host__ __device__ float dot(GLM_CUDA::vec3 a, GLM_CUDA::vec3 b)
+    __host__ __device__ float dot(const vec3& a, const vec3& b)
     {
         float sum = 0;
         for (int axis = 0; axis < 3; axis++)
@@ -46,7 +56,7 @@ namespace GLM_CUDA
         }
         return sum;
     }
-    __host__ __device__ float dot(GLM_CUDA::vec4 a, GLM_CUDA::vec4 b)
+    __host__ __device__ float dot(const vec4& a, const vec4& b)
     {
         float sum = 0;
         for (int axis = 0; axis < 4; axis++)

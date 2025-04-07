@@ -2,8 +2,7 @@
 
 namespace GLM_CUDA
 {
-    /*
-    __host__ __device__ mat2 transpose(mat2 matrix)
+    __host__ __device__ mat2 transpose(const mat2& matrix)
     {
         mat2 out;
         for (int row = 0; row < 2; row++)
@@ -15,7 +14,6 @@ namespace GLM_CUDA
         }
         return out;
     }
-    */
     __host__ __device__ mat3 transpose(const mat3& matrix)
     {
         mat3 out;
@@ -28,8 +26,7 @@ namespace GLM_CUDA
         }
         return out;
     }
-    /*
-    __host__ __device__ mat4 transpose(mat4 matrix)
+    __host__ __device__ mat4 transpose(const mat4& matrix)
     {
         mat4 out;
         for (int row = 0; row < 4; row++)
@@ -41,5 +38,4 @@ namespace GLM_CUDA
         }
         return out;
     }
-    */
 }

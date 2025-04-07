@@ -22,23 +22,23 @@ namespace GLM_CUDA
         public:
             __host__ __device__ mat2();
             __host__ __device__ mat2(float v0);
-            __host__ __device__ mat2(vec2 v0, vec2 v1);
+            __host__ __device__ mat2(const vec2& v0, const vec2& v1);
             __host__ __device__ ~mat2();
 
-            __host__ __device__ vec3& operator [] (unsigned int index);
-            __host__ __device__ const vec3& operator [] (unsigned int index) const;
+            __host__ __device__ vec2& operator [] (unsigned int index);
+            __host__ __device__ const vec2& operator [] (unsigned int index) const;
             __host__ __device__ mat2& operator = (const mat2& matrix);
 
-            __host__ __device__ mat2 operator + (mat2 matrix);
-            __host__ __device__ mat2& operator += (mat2& matrix);
+            __host__ __device__ mat2 operator + (const mat2& matrix);
+            __host__ __device__ mat2& operator += (const mat2& matrix);
 
-            __host__ __device__ mat2 operator - (mat2 matrix);
-            __host__ __device__ mat2& operator -= (mat2& matrix);
+            __host__ __device__ mat2 operator - (const mat2& matrix);
+            __host__ __device__ mat2& operator -= (const mat2& matrix);
 
             __host__ __device__ mat2 operator * (float scalar);
-            __host__ __device__ mat2 operator * (mat2 matrix);
+            __host__ __device__ mat2 operator * (const mat2& matrix);
             __host__ __device__ mat2& operator *= (float scalar);
-            __host__ __device__ mat2& operator *= (mat2 matrix);
+            __host__ __device__ mat2& operator *= (const mat2& matrix);
 
             __host__ __device__ mat2 operator / (float scalar);
             __host__ __device__ mat2& operator /= (float scalar);
@@ -82,22 +82,23 @@ namespace GLM_CUDA
         public:
             __host__ __device__ mat4();
             __host__ __device__ mat4(float v0);
-            __host__ __device__ mat4(vec4 v0, vec4 v1, vec4 v2, vec4 v3);
+            __host__ __device__ mat4(const vec4& v0, const vec4& v1, const vec4& v2, const vec4& v3);
             __host__ __device__ ~mat4();
 
-            __host__ __device__ vec4 operator [] (unsigned int index) const;
+            __host__ __device__ vec4& operator [] (unsigned int index);
+            __host__ __device__ const vec4& operator [] (unsigned int index) const;
             __host__ __device__ mat4& operator = (const mat4& matrix);
 
-            __host__ __device__ mat4 operator + (mat4 matrix);
-            __host__ __device__ mat4& operator += (mat4& matrix);
+            __host__ __device__ mat4 operator + (const mat4& matrix);
+            __host__ __device__ mat4& operator += (const mat4& matrix);
 
-            __host__ __device__ mat4 operator - (mat4 matrix);
-            __host__ __device__ mat4& operator -= (mat4& matrix);
+            __host__ __device__ mat4 operator - (const mat4& matrix);
+            __host__ __device__ mat4& operator -= (const mat4& matrix);
 
             __host__ __device__ mat4 operator * (float scalar);
-            __host__ __device__ mat4 operator * (mat4 matrix);
+            __host__ __device__ mat4 operator * (const mat4& matrix);
             __host__ __device__ mat4& operator *= (float scalar);
-            __host__ __device__ mat4& operator *= (mat4 matrix);
+            __host__ __device__ mat4& operator *= (const mat4& matrix);
 
             __host__ __device__ mat4 operator / (float scalar);
             __host__ __device__ mat4& operator /= (float scalar);
@@ -106,7 +107,7 @@ namespace GLM_CUDA
     };
 
     // Matrix exclusive operation
-    __host__ __device__ mat2 transpose(mat2 matrix);
+    __host__ __device__ mat2 transpose(const mat2& matrix);
     __host__ __device__ mat3 transpose(const mat3& matrix);
-    __host__ __device__ mat4 transpose(mat4 matrix);
+    __host__ __device__ mat4 transpose(const mat4& matrix);
 }

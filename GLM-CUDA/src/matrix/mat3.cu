@@ -167,7 +167,7 @@ namespace GLM_CUDA
         return *this;
     }
 
-    __host__ std::ostream& operator << (std::ostream& os, const mat3& matrix)
+    __host__ std::ostream& operator<<(std::ostream& os, const mat3& matrix)
     {
         // Expected output
         // |                   |

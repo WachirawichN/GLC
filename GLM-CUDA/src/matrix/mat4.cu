@@ -115,6 +115,14 @@ namespace GLM_CUDA
         }
         return out;
     }
+    __host__ __device__ mat4& mat4::operator*=(float scalar)
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            value[i] *= scalar;
+        }
+        return *this;
+    }
     __host__ __device__ mat4 mat4::operator*(const mat4& matrix)
     {
         mat4 out;
@@ -128,14 +136,6 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ mat4& mat4::operator*=(float scalar)
-    {
-        for (int i = 0; i < 4; ++i)
-        {
-            value[i] *= scalar;
-        }
-        return *this;
-    }
     __host__ __device__ mat4& mat4::operator*=(const mat4& matrix)
     {
         mat4 transposed = transpose(*this);
@@ -147,6 +147,19 @@ namespace GLM_CUDA
             }
         }
         return *this;
+    }
+    __host__ __device__ vec4 mat4::operator*(const vec4& vector)
+    {
+        vec4 out;
+        mat4 transposed = transpose(*this);
+        for (int row = 0; row < 4; row++)
+        {
+            for (int column = 0; column < 4; column++)
+            {
+                out[row] += (row == column) ? transposed[row][column] * vector[row] : transposed[row][column];
+            }
+        }
+        return out;
     }
 
     __host__ __device__ mat4 mat4::operator/(float scalar)

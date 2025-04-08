@@ -115,6 +115,14 @@ namespace GLM_CUDA
         }
         return out;
     }
+    __host__ __device__ mat3& mat3::operator*=(float scalar)
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            value[i] *= scalar;
+        }
+        return *this;
+    }
     __host__ __device__ mat3 mat3::operator*(const mat3& matrix)
     {
         mat3 out;
@@ -128,14 +136,6 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator*=(float scalar)
-    {
-        for (int i = 0; i < 3; ++i)
-        {
-            value[i] *= scalar;
-        }
-        return *this;
-    }
     __host__ __device__ mat3& mat3::operator*=(const mat3& matrix)
     {
         mat3 transposed = transpose(*this);
@@ -147,6 +147,19 @@ namespace GLM_CUDA
             }
         }
         return *this;
+    }
+    __host__ __device__ vec3 mat3::operator*(const vec3& vector)
+    {
+        vec3 out;
+        mat3 transposed = transpose(*this);
+        for (int row = 0; row < 3; row++)
+        {
+            for (int column = 0; column < 3; column++)
+            {
+                out[row] += (row == column) ? transposed[row][column] * vector[row] : transposed[row][column];
+            }
+        }
+        return out;
     }
 
     __host__ __device__ mat3 mat3::operator/(float scalar)

@@ -115,6 +115,14 @@ namespace GLM_CUDA
         }
         return out;
     }
+    __host__ __device__ mat2& mat2::operator*=(float scalar)
+    {
+        for (int i = 0; i < 2; ++i)
+        {
+            value[i] *= scalar;
+        }
+        return *this;
+    }
     __host__ __device__ mat2 mat2::operator*(const mat2& matrix)
     {
         mat2 out;
@@ -128,14 +136,6 @@ namespace GLM_CUDA
         }
         return out;
     }
-    __host__ __device__ mat2& mat2::operator*=(float scalar)
-    {
-        for (int i = 0; i < 2; ++i)
-        {
-            value[i] *= scalar;
-        }
-        return *this;
-    }
     __host__ __device__ mat2& mat2::operator*=(const mat2& matrix)
     {
         mat2 transposed = transpose(*this);
@@ -147,6 +147,19 @@ namespace GLM_CUDA
             }
         }
         return *this;
+    }
+    __host__ __device__ vec2 mat2::operator*(const vec2& vector)
+    {
+        vec2 out;
+        mat2 transposed = transpose(*this);
+        for (int row = 0; row < 2; row++)
+        {
+            for (int column = 0; column < 2; column++)
+            {
+                out[row] += (row == column) ? transposed[row][column] * vector[row] : transposed[row][column];
+            }
+        }
+        return out;
     }
 
     __host__ __device__ mat2 mat2::operator/(float scalar)

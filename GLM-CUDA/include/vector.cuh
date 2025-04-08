@@ -36,9 +36,13 @@ namespace GLM_CUDA
             __host__ __device__ indexProxy operator [] (unsigned int index);
             __host__ __device__ vec2& operator = (const vec2& vector);
 
+            __host__ __device__ vec2 operator + (float scalar);
+            __host__ __device__ vec2& operator += (float scalar);
             __host__ __device__ vec2 operator + (const vec2& vector);
             __host__ __device__ vec2& operator += (const vec2& vector);
 
+            __host__ __device__ vec2 operator - (float scalar);
+            __host__ __device__ vec2& operator -= (float scalar);
             __host__ __device__ vec2 operator - (const vec2& vector);
             __host__ __device__ vec2& operator -= (const vec2& vector);
 
@@ -66,9 +70,13 @@ namespace GLM_CUDA
             __host__ __device__ indexProxy operator [] (unsigned int index);
             __host__ __device__ vec3& operator = (const vec3& vector);
 
+            __host__ __device__ vec3 operator + (float scalar);
+            __host__ __device__ vec3& operator += (float scalar);
             __host__ __device__ vec3 operator + (const vec3& vector);
             __host__ __device__ vec3& operator += (const vec3& vector);
 
+            __host__ __device__ vec3 operator - (float scalar);
+            __host__ __device__ vec3& operator -= (float scalar);
             __host__ __device__ vec3 operator - (const vec3& vector);
             __host__ __device__ vec3& operator -= (const vec3& vector);
 
@@ -97,9 +105,13 @@ namespace GLM_CUDA
             __host__ __device__ indexProxy operator [] (unsigned int index);
             __host__ __device__ vec4& operator = (const vec4& vector);
 
+            __host__ __device__ vec4 operator + (float scalar);
+            __host__ __device__ vec4& operator += (float scalar);
             __host__ __device__ vec4 operator + (const vec4& vector);
             __host__ __device__ vec4& operator += (const vec4& vector);
 
+            __host__ __device__ vec4 operator - (float scalar);
+            __host__ __device__ vec4& operator -= (float scalar);
             __host__ __device__ vec4 operator - (const vec4& vector);
             __host__ __device__ vec4& operator -= (const vec4& vector);
 

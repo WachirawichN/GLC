@@ -35,7 +35,6 @@ namespace GLM_CUDA
         delete[] value;
     }
 
-
     __host__ __device__ float vec3::operator[](unsigned int index) const
     {
         return value[index];
@@ -77,7 +76,14 @@ namespace GLM_CUDA
         return *this;
     }
 
-
+    __host__ __device__ vec3 vec3::operator+(float scalar)
+    {
+        return *this + vec3(scalar);
+    }
+    __host__ __device__ vec3& vec3::operator+=(float scalar)
+    {
+        return *this += vec3(scalar);
+    }
     __host__ __device__ vec3 vec3::operator+(const vec3& vector)
     {
         vec3 out;
@@ -96,6 +102,14 @@ namespace GLM_CUDA
         return *this;
     }
 
+    __host__ __device__ vec3 vec3::operator-(float scalar)
+    {
+        return *this - vec3(scalar);
+    }
+    __host__ __device__ vec3& vec3::operator-=(float scalar)
+    {
+        return *this -= vec3(scalar);
+    }
     __host__ __device__ vec3 vec3::operator-(const vec3& vector)
     {
         vec3 out;

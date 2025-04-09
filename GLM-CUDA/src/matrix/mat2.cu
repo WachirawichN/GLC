@@ -156,7 +156,7 @@ namespace GLM_CUDA
         {
             for (int column = 0; column < 2; column++)
             {
-                out[row] += (row == column) ? transposed[row][column] * vector[row] : transposed[row][column];
+                out[row] += transposed[row][column] * vector[column];
             }
         }
         return out;

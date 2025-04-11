@@ -1,6 +1,6 @@
 #include "../../include/vector.cuh"
 
-namespace GLM_CUDA
+namespace CUDA_GL
 {
     __host__ __device__ vec2::vec2()
     {
@@ -35,14 +35,13 @@ namespace GLM_CUDA
         delete[] value;
     }
 
-
-    __host__ __device__ float vec2::operator[](unsigned int index) const
+    __host__ __device__ float& vec2::operator[](unsigned int index)
     {
         return value[index];
     }
-    __host__ __device__ indexProxy vec2::operator[](unsigned int index)
+    __host__ __device__ float vec2::operator[](unsigned int index) const
     {
-        return indexProxy(value[index]);
+        return value[index];
     }
     __host__ __device__ vec2& vec2::operator=(const vec2& vector)
     {
@@ -77,7 +76,14 @@ namespace GLM_CUDA
         return *this;
     }
 
-
+    __host__ __device__ vec2 vec2::operator+(float scalar)
+    {
+        return *this + vec2(scalar);
+    }
+    __host__ __device__ vec2& vec2::operator+=(float scalar)
+    {
+        return *this += vec2(scalar);
+    }
     __host__ __device__ vec2 vec2::operator+(const vec2& vector)
     {
         vec2 out;
@@ -96,6 +102,14 @@ namespace GLM_CUDA
         return *this;
     }
 
+    __host__ __device__ vec2 vec2::operator-(float scalar)
+    {
+        return *this - vec2(scalar);
+    }
+    __host__ __device__ vec2& vec2::operator-=(float scalar)
+    {
+        return *this -= vec2(scalar);
+    }
     __host__ __device__ vec2 vec2::operator-(const vec2& vector)
     {
         vec2 out;

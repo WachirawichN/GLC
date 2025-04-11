@@ -1,6 +1,6 @@
 #include "../../include/utility.cuh"
 
-namespace GLM_CUDA
+namespace CUDA_GL
 {
     __host__ __device__ mat2 dot(const mat2& a, const mat2& b)
     {

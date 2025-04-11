@@ -1,6 +1,6 @@
 #include "../../include/matrix.cuh"
 
-namespace GLM_CUDA
+namespace CUDA_GL
 {
     __host__ __device__ mat2 transpose(const mat2& matrix)
     {

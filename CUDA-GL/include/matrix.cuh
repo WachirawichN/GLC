@@ -13,7 +13,7 @@
 // └ └   ┘ └   ┘ └   ┘ ┘
 // Printing out matrix will result in slighty different formation than this tho, console doesn't support printing those special char.
 
-namespace GLM_CUDA
+namespace CUDA_GL
 {
     class mat2
     {

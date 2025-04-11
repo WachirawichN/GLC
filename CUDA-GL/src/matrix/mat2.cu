@@ -2,42 +2,42 @@
 
 #include "../../include/utility.cuh"
 
-namespace GLM_CUDA
+namespace CUDA_GL
 {
-    __host__ __device__ mat3::mat3()
+    __host__ __device__ mat2::mat2()
     {
-        value = new vec3[3];
-        for (int i = 0; i < 3; i++)
+        value = new vec2[2];
+        for (int i = 0; i < 2; i++)
         {
-            value[i] = vec3();
+            value[i] = vec2();
         }
     }
-    __host__ __device__ mat3::mat3(float v0)
+    __host__ __device__ mat2::mat2(float v0)
     {
-        value = new vec3[3];
-        for (int i = 0; i < 3; i++)
+        value = new vec2[2];
+        for (int i = 0; i < 2; i++)
         {
-            value[i] = vec3(v0);
+            value[i] = vec2(v0);
         }
     }
-    __host__ __device__ mat3::mat3(const vec3& v0, const vec3& v1, const vec3& v2)
+    __host__ __device__ mat2::mat2(const vec2& v0, const vec2& v1)
     {
-        value = new vec3[3] {v0, v1, v2};
+        value = new vec2[2] {v0, v1};
     }
-    __host__ __device__ mat3::~mat3()
+    __host__ __device__ mat2::~mat2()
     {
         delete[] value;
     }
 
-    __host__ __device__ vec3& mat3::operator[](unsigned int index)
+    __host__ __device__ vec2& mat2::operator[](unsigned int index)
     {
         return value[index];
     }
-    __host__ __device__ const vec3& mat3::operator[] (unsigned int index) const
+    __host__ __device__ const vec2& mat2::operator[](unsigned int index) const
     {
         return value[index];
     }
-    __host__ __device__ mat3& mat3::operator=(const mat3& matrix)
+    __host__ __device__ mat2& mat2::operator=(const mat2& matrix)
     {
         if (this != &matrix)
         {
@@ -45,10 +45,10 @@ namespace GLM_CUDA
             if (value)
             {
                 delete[] value;
-                value = new vec3[3];
+                value = new vec2[2];
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 value[i] = matrix[i];
             }
@@ -70,91 +70,91 @@ namespace GLM_CUDA
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator+(const mat3& matrix)
+    __host__ __device__ mat2 mat2::operator+(const mat2& matrix)
     {
-        mat3 out;
-        for (int i = 0; i < 3; ++i)
+        mat2 out;
+        for (int i = 0; i < 2; ++i)
         {
             out[i] = value[i] + matrix[i];
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator+=(const mat3& matrix)
+    __host__ __device__ mat2& mat2::operator+=(const mat2& matrix)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             value[i] += matrix[i];
         }
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator-(const mat3& matrix)
+    __host__ __device__ mat2 mat2::operator-(const mat2& matrix)
     {
-        mat3 out;
-        for (int i = 0; i < 3; ++i)
+        mat2 out;
+        for (int i = 0; i < 2; ++i)
         {
             out[i] = value[i] - matrix[i];
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator-=(const mat3& matrix)
+    __host__ __device__ mat2& mat2::operator-=(const mat2& matrix)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             value[i] -= matrix[i];
         }
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator*(float scalar)
+    __host__ __device__ mat2 mat2::operator*(float scalar)
     {
-        mat3 out;
-        for (int i = 0; i < 3; ++i)
+        mat2 out;
+        for (int i = 0; i < 2; ++i)
         {
             out[i] = value[i] * scalar;
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator*=(float scalar)
+    __host__ __device__ mat2& mat2::operator*=(float scalar)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             value[i] *= scalar;
         }
         return *this;
     }
-    __host__ __device__ mat3 mat3::operator*(const mat3& matrix)
+    __host__ __device__ mat2 mat2::operator*(const mat2& matrix)
     {
-        mat3 out;
-        mat3 transposed = transpose(*this);
-        for (int column = 0; column < 3; column++)
+        mat2 out;
+        mat2 transposed = transpose(*this);
+        for (int column = 0; column < 2; column++)
         {
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < 2; row++)
             {
                 out[row][column] = dot(transposed[column], matrix[row]);
             }
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator*=(const mat3& matrix)
+    __host__ __device__ mat2& mat2::operator*=(const mat2& matrix)
     {
-        mat3 transposed = transpose(*this);
-        for (int column = 0; column < 3; column++)
+        mat2 transposed = transpose(*this);
+        for (int column = 0; column < 2; column++)
         {
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < 2; row++)
             {
                 value[row][column] = dot(transposed[column], matrix[row]);
             }
         }
         return *this;
     }
-    __host__ __device__ vec3 mat3::operator*(const vec3& vector)
+    __host__ __device__ vec2 mat2::operator*(const vec2& vector)
     {
-        vec3 out;
-        mat3 transposed = transpose(*this);
-        for (int row = 0; row < 3; row++)
+        vec2 out;
+        mat2 transposed = transpose(*this);
+        for (int row = 0; row < 2; row++)
         {
-            for (int column = 0; column < 3; column++)
+            for (int column = 0; column < 2; column++)
             {
                 out[row] += transposed[row][column] * vector[column];
             }
@@ -162,38 +162,37 @@ namespace GLM_CUDA
         return out;
     }
 
-    __host__ __device__ mat3 mat3::operator/(float scalar)
+    __host__ __device__ mat2 mat2::operator/(float scalar)
     {
-        mat3 out;
-        for (int i = 0; i < 3; ++i)
+        mat2 out;
+        for (int i = 0; i < 2; ++i)
         {
             out[i] = value[i] / scalar;
         }
         return out;
     }
-    __host__ __device__ mat3& mat3::operator/=(float scalar)
+    __host__ __device__ mat2& mat2::operator/=(float scalar)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             value[i] /= scalar;
         }
         return *this;
     }
 
-    __host__ std::ostream& operator<<(std::ostream& os, const mat3& matrix)
+    __host__ std::ostream& operator<<(std::ostream& os, const mat2& matrix)
     {
         // Expected output
-        // |                   |
-        // | | a | | d | | g | |
-        // | | b | | e | | h | |
-        // | | c | | f | | i | |
-        // |                   |
+        // |             |
+        // | | a | | c | |
+        // | | b | | d | |
+        // |             |
 
         // Check for maximum length of every number inside matrix
         unsigned int maxLength = 0;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 2; j++)
             {
                 if (std::to_string(matrix[i][j]).length() > maxLength)
                 {
@@ -202,15 +201,15 @@ namespace GLM_CUDA
             }
         }
 
-        for (int row = 0; row < 5; row++)
+        for (int row = 0; row < 4; row++)
         {
             os << "|" << " "; 
 
-            for (int column = 0; column < 3; column++)
+            for (int column = 0; column < 2; column++)
             {
                 std::string bracket;
                 std::string numStr;
-                if (row == 0 || row == 4)
+                if (row == 0 || row == 3)
                 {
                     bracket = " ";
                     numStr = std::string(maxLength, ' ');

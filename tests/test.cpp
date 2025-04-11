@@ -3,9 +3,9 @@
 
 #include <cuda_runtime.h>
 
-#include "../GLM-CUDA/include/matrix.cuh"
-#include "../GLM-CUDA/include/utility.cuh"
-#include "../GLM-CUDA/include/vector.cuh"
+#include "../CUDA-GL/include/matrix.cuh"
+#include "../CUDA-GL/include/utility.cuh"
+#include "../CUDA-GL/include/vector.cuh"
 
 template <typename T>
 void testMat(T& matrix1, T& matrix2)
@@ -69,37 +69,37 @@ int main()
     {
         std::cout << "2x2 Random matrix x Random 2D vector" << std::endl;
         {
-            GLM_CUDA::vec2 val1(RNG(), RNG());
-            GLM_CUDA::mat2 testMat1(
-                GLM_CUDA::vec2(RNG(), RNG()),
-                GLM_CUDA::vec2(RNG(), RNG())
+            CUDA_GL::vec2 val1(RNG(), RNG());
+            CUDA_GL::mat2 testMat1(
+                CUDA_GL::vec2(RNG(), RNG()),
+                CUDA_GL::vec2(RNG(), RNG())
             );
-            testMatVec<GLM_CUDA::mat2, GLM_CUDA::vec2>(testMat1, val1);
+            testMatVec<CUDA_GL::mat2, CUDA_GL::vec2>(testMat1, val1);
             std::cout << std::endl;
         }
         
         std::cout << "3x3 Random matrix x Random 3D vector" << std::endl;
         {
-            GLM_CUDA::vec3 val1(RNG(), RNG(), RNG());
-            GLM_CUDA::mat3 testMat1(
-                GLM_CUDA::vec3(RNG(), RNG(), RNG()),
-                GLM_CUDA::vec3(RNG(), RNG(), RNG()),
-                GLM_CUDA::vec3(RNG(), RNG(), RNG())
+            CUDA_GL::vec3 val1(RNG(), RNG(), RNG());
+            CUDA_GL::mat3 testMat1(
+                CUDA_GL::vec3(RNG(), RNG(), RNG()),
+                CUDA_GL::vec3(RNG(), RNG(), RNG()),
+                CUDA_GL::vec3(RNG(), RNG(), RNG())
             );
-            testMatVec<GLM_CUDA::mat3, GLM_CUDA::vec3>(testMat1, val1);
+            testMatVec<CUDA_GL::mat3, CUDA_GL::vec3>(testMat1, val1);
             std::cout << std::endl;
         }
 
         std::cout << "4x4 Random matrix x Random 4D vector" << std::endl;
         {
-            GLM_CUDA::vec4 val1(RNG(), RNG(), RNG(), RNG());
-            GLM_CUDA::mat4 testMat1(
-                GLM_CUDA::vec4(RNG(), RNG(), RNG(), RNG()),
-                GLM_CUDA::vec4(RNG(), RNG(), RNG(), RNG()),
-                GLM_CUDA::vec4(RNG(), RNG(), RNG(), RNG()),
-                GLM_CUDA::vec4(RNG(), RNG(), RNG(), RNG())
+            CUDA_GL::vec4 val1(RNG(), RNG(), RNG(), RNG());
+            CUDA_GL::mat4 testMat1(
+                CUDA_GL::vec4(RNG(), RNG(), RNG(), RNG()),
+                CUDA_GL::vec4(RNG(), RNG(), RNG(), RNG()),
+                CUDA_GL::vec4(RNG(), RNG(), RNG(), RNG()),
+                CUDA_GL::vec4(RNG(), RNG(), RNG(), RNG())
             );
-            testMatVec<GLM_CUDA::mat4, GLM_CUDA::vec4>(testMat1, val1);
+            testMatVec<CUDA_GL::mat4, CUDA_GL::vec4>(testMat1, val1);
             std::cout << std::endl;
         }
     }
@@ -108,37 +108,37 @@ int main()
     {
         std::cout << "2x2 Identity matrix x Random 2D vector" << std::endl;
         {
-            GLM_CUDA::vec2 val1(RNG(), RNG());
-            GLM_CUDA::mat2 testMat1(
-                GLM_CUDA::vec2(1.0f, 0.0f),
-                GLM_CUDA::vec2(0.0f, 1.0f)
+            CUDA_GL::vec2 val1(RNG(), RNG());
+            CUDA_GL::mat2 testMat1(
+                CUDA_GL::vec2(1.0f, 0.0f),
+                CUDA_GL::vec2(0.0f, 1.0f)
             );
-            testMatVec<GLM_CUDA::mat2, GLM_CUDA::vec2>(testMat1, val1);
+            testMatVec<CUDA_GL::mat2, CUDA_GL::vec2>(testMat1, val1);
             std::cout << std::endl;
         }
         
         std::cout << "3x3 Identity matrix x Random 3D vector" << std::endl;
         {
-            GLM_CUDA::vec3 val1(RNG(), RNG(), RNG());
-            GLM_CUDA::mat3 testMat1(
-                GLM_CUDA::vec3(1.0f, 0.0f, 0.0f),
-                GLM_CUDA::vec3(0.0f, 1.0f, 0.0f),
-                GLM_CUDA::vec3(0.0f, 0.0f, 1.0f)
+            CUDA_GL::vec3 val1(RNG(), RNG(), RNG());
+            CUDA_GL::mat3 testMat1(
+                CUDA_GL::vec3(1.0f, 0.0f, 0.0f),
+                CUDA_GL::vec3(0.0f, 1.0f, 0.0f),
+                CUDA_GL::vec3(0.0f, 0.0f, 1.0f)
             );
-            testMatVec<GLM_CUDA::mat3, GLM_CUDA::vec3>(testMat1, val1);
+            testMatVec<CUDA_GL::mat3, CUDA_GL::vec3>(testMat1, val1);
             std::cout << std::endl;
         }
 
         std::cout << "4x4 Identity matrix x Random 4D vector" << std::endl;
         {
-            GLM_CUDA::vec4 val1(RNG(), RNG(), RNG(), RNG());
-            GLM_CUDA::mat4 testMat1(
-                GLM_CUDA::vec4(1.0f, 0.0f, 0.0f, 0.0f),
-                GLM_CUDA::vec4(0.0f, 1.0f, 0.0f, 0.0f),
-                GLM_CUDA::vec4(0.0f, 0.0f, 1.0f, 0.0f),
-                GLM_CUDA::vec4(0.0f, 0.0f, 0.0f, 1.0f)
+            CUDA_GL::vec4 val1(RNG(), RNG(), RNG(), RNG());
+            CUDA_GL::mat4 testMat1(
+                CUDA_GL::vec4(1.0f, 0.0f, 0.0f, 0.0f),
+                CUDA_GL::vec4(0.0f, 1.0f, 0.0f, 0.0f),
+                CUDA_GL::vec4(0.0f, 0.0f, 1.0f, 0.0f),
+                CUDA_GL::vec4(0.0f, 0.0f, 0.0f, 1.0f)
             );
-            testMatVec<GLM_CUDA::mat4, GLM_CUDA::vec4>(testMat1, val1);
+            testMatVec<CUDA_GL::mat4, CUDA_GL::vec4>(testMat1, val1);
             std::cout << std::endl;
         }
     }
@@ -147,37 +147,37 @@ int main()
     {
         std::cout << "Use case 2x2 Identity matrix x Random 2D vector" << std::endl;
         {
-            GLM_CUDA::vec2 val1(RNG(), 1.0f);
-            GLM_CUDA::mat2 testMat1(
-                GLM_CUDA::vec2(1.0f, 0.0f),
-                GLM_CUDA::vec2(RNG(), 1.0f)
+            CUDA_GL::vec2 val1(RNG(), 1.0f);
+            CUDA_GL::mat2 testMat1(
+                CUDA_GL::vec2(1.0f, 0.0f),
+                CUDA_GL::vec2(RNG(), 1.0f)
             );
-            testMatVec<GLM_CUDA::mat2, GLM_CUDA::vec2>(testMat1, val1);
+            testMatVec<CUDA_GL::mat2, CUDA_GL::vec2>(testMat1, val1);
             std::cout << std::endl;
         }
         
         std::cout << "Use case 3x3 Identity matrix x Random 3D vector" << std::endl;
         {
-            GLM_CUDA::vec3 val1(RNG(), RNG(), 1.0f);
-            GLM_CUDA::mat3 testMat1(
-                GLM_CUDA::vec3(1.0f, 0.0f, 0.0f),
-                GLM_CUDA::vec3(0.0f, 1.0f, 0.0f),
-                GLM_CUDA::vec3(RNG(), RNG(), 1.0f)
+            CUDA_GL::vec3 val1(RNG(), RNG(), 1.0f);
+            CUDA_GL::mat3 testMat1(
+                CUDA_GL::vec3(1.0f, 0.0f, 0.0f),
+                CUDA_GL::vec3(0.0f, 1.0f, 0.0f),
+                CUDA_GL::vec3(RNG(), RNG(), 1.0f)
             );
-            testMatVec<GLM_CUDA::mat3, GLM_CUDA::vec3>(testMat1, val1);
+            testMatVec<CUDA_GL::mat3, CUDA_GL::vec3>(testMat1, val1);
             std::cout << std::endl;
         }
 
         std::cout << "Use case 4x4 Identity matrix x Random 4D vector" << std::endl;
         {
-            GLM_CUDA::vec4 val1(RNG(), RNG(), RNG(), 1.0f);
-            GLM_CUDA::mat4 testMat1(
-                GLM_CUDA::vec4(1.0f, 0.0f, 0.0f, 0.0f),
-                GLM_CUDA::vec4(0.0f, 1.0f, 0.0f, 0.0f),
-                GLM_CUDA::vec4(0.0f, 0.0f, 1.0f, 0.0f),
-                GLM_CUDA::vec4(RNG(), RNG(), RNG(), 1.0f)
+            CUDA_GL::vec4 val1(RNG(), RNG(), RNG(), 1.0f);
+            CUDA_GL::mat4 testMat1(
+                CUDA_GL::vec4(1.0f, 0.0f, 0.0f, 0.0f),
+                CUDA_GL::vec4(0.0f, 1.0f, 0.0f, 0.0f),
+                CUDA_GL::vec4(0.0f, 0.0f, 1.0f, 0.0f),
+                CUDA_GL::vec4(RNG(), RNG(), RNG(), 1.0f)
             );
-            testMatVec<GLM_CUDA::mat4, GLM_CUDA::vec4>(testMat1, val1);
+            testMatVec<CUDA_GL::mat4, CUDA_GL::vec4>(testMat1, val1);
             std::cout << std::endl;
         }
     }

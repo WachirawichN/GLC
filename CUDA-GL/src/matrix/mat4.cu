@@ -2,7 +2,7 @@
 
 #include "../../include/utility.cuh"
 
-namespace GLM_CUDA
+namespace CUDA_GL
 {
     __host__ __device__ mat4::mat4()
     {

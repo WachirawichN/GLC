@@ -1,6 +1,6 @@
 #include "../../include/vector.cuh"
 
-namespace GLM_CUDA
+namespace CUDA_GL
 {
     __host__ __device__ vec2 cross(vec2 a, vec2 b)
     {

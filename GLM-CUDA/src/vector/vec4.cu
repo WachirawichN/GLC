@@ -35,13 +35,13 @@ namespace GLM_CUDA
         delete[] value;
     }
 
-    __host__ __device__ float vec4::operator[](unsigned int index) const
+    __host__ __device__ float& vec4::operator[](unsigned int index)
     {
         return value[index];
     }
-    __host__ __device__ indexProxy vec4::operator[](unsigned int index)
+    __host__ __device__ float vec4::operator[](unsigned int index) const
     {
-        return indexProxy(value[index]);
+        return value[index];
     }
     __host__ __device__ vec4& vec4::operator=(const vec4& vector)
     {

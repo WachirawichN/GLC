@@ -48,20 +48,45 @@ void testMat(T& matrix1, T& matrix2)
 }
 
 template <typename T>
-void testVec(T& vector)
+void testVec(T& vector1, T& vector2)
 {
-    std::cout << vector << std::endl;
+    std::cout << "Vector 1: " << vector1 << std::endl;
+    std::cout << "Vector 2: " << vector2 << std::endl;
     {
         std::cout << "Scalar addition" << std::endl;
-        std::cout << vector + 1.0f << std::endl;
-        vector += 1.0f;
-        std::cout << vector << std::endl;
+        std::cout << vector1 + 1.0f << std::endl;
+        vector1 += 1.0f;
+        std::cout << vector1 << std::endl;
     }
     {
         std::cout << "Scalar subtraction" << std::endl;
-        std::cout << vector - 1.0f << std::endl;
-        vector -= 1.0f;
-        std::cout << vector << std::endl << std::endl;
+        std::cout << vector1 - 1.0f << std::endl;
+        vector1 -= 1.0f;
+        std::cout << vector1 << std::endl;
+    }
+    {
+        std::cout << "Scalar multiplication" << std::endl;
+        std::cout << vector1 * 2.0f << std::endl;
+        vector1 *= 2.0f;
+        std::cout << vector1 << std::endl;
+    }
+    {
+        std::cout << "Scalar division" << std::endl;
+        std::cout << vector1 / 2.0f << std::endl;
+        vector1 /= 2.0f;
+        std::cout << vector1 << std::endl;
+    }
+    {
+        std::cout << "Vector addition" << std::endl;
+        std::cout << vector1 + vector2 << std::endl;
+        vector1 += vector2;
+        std::cout << vector1 << std::endl;
+    }
+    {
+        std::cout << "Vector subtraction" << std::endl;
+        std::cout << vector1 - vector2 << std::endl;
+        vector1 -= vector2;
+        std::cout << vector1 << std::endl << std::endl;
     }
 }
 
@@ -76,20 +101,23 @@ int main()
 
     std::cout << "2D Vector" << std::endl;
     {
-        GLM_CUDA::vec2 vector(RNG(), RNG());
-        testVec(vector);
+        GLM_CUDA::vec2 vec1(RNG(), RNG());
+        GLM_CUDA::vec2 vec2(RNG(), RNG());
+        testVec<GLM_CUDA::vec2>(vec1, vec2);
     }
     
     std::cout << "3D Vector" << std::endl;
     {
-        GLM_CUDA::vec3 vector(RNG(), RNG(), RNG());
-        testVec(vector);
+        GLM_CUDA::vec3 vec1(RNG(), RNG(), RNG());
+        GLM_CUDA::vec3 vec2(RNG(), RNG(), RNG());
+        testVec<GLM_CUDA::vec3>(vec1, vec2);
     }
 
     std::cout << "4D Vector" << std::endl;
     {
-        GLM_CUDA::vec4 vector(RNG(), RNG(), RNG(), RNG());
-        testVec(vector);
+        GLM_CUDA::vec4 vec1(RNG(), RNG(), RNG(), RNG());
+        GLM_CUDA::vec4 vec2(RNG(), RNG(), RNG(), RNG());
+        testVec<GLM_CUDA::vec4>(vec1, vec2);
     }
     return 0;
 }

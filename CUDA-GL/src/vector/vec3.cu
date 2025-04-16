@@ -33,6 +33,7 @@ namespace CUDA_GL
     __host__ __device__ vec3::~vec3()
     {
         delete[] value;
+        value = NULL;
     }
 
     __host__ __device__ float& vec3::operator[](unsigned int index)

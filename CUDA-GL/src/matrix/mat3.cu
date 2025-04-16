@@ -27,6 +27,7 @@ namespace CUDA_GL
     __host__ __device__ mat3::~mat3()
     {
         delete[] value;
+        value = NULL;
     }
 
     __host__ __device__ vec3& mat3::operator[](unsigned int index)

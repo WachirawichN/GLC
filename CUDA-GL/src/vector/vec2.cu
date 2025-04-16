@@ -33,6 +33,7 @@ namespace CUDA_GL
     __host__ __device__ vec2::~vec2()
     {
         delete[] value;
+        value = NULL;
     }
 
     __host__ __device__ float& vec2::operator[](unsigned int index)

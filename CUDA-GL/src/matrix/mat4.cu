@@ -27,6 +27,7 @@ namespace CUDA_GL
     __host__ __device__ mat4::~mat4()
     {
         delete[] value;
+        value = NULL;
     }
 
     __host__ __device__ vec4& mat4::operator[](unsigned int index)

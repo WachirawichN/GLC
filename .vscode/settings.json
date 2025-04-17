@@ -60,6 +60,13 @@
         "xlocmes": "cpp",
         "xlocnum": "cpp",
         "xloctime": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "array": "cpp",
+        "map": "cpp",
+        "mutex": "cpp",
+        "set": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "xtree": "cpp"
     }
 }

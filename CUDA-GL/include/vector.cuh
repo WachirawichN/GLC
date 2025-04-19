@@ -38,7 +38,6 @@ namespace CUDA_GL
 
             __host__ friend std::ostream& operator << (std::ostream& os, const vec2& vector);
         };
-
     class vec3
     {
         private:
@@ -72,7 +71,6 @@ namespace CUDA_GL
             
             __host__ friend std::ostream& operator << (std::ostream& os, const vec3& vector);
         };
-
     class vec4
     {
         private:

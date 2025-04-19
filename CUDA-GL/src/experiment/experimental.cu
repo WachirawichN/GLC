@@ -1,30 +1,13 @@
 #include "../../include/experimental.cuh"
 
-/*
-__device__ int threadID()
+__global__ void gpuDot(CUDA_GL::mat4* a, CUDA_GL::mat4* b, CUDA_GL::mat4* c, int matrixID)
 {
-    int blockId = 
-        blockIdx.x +
-        blockIdx.y * gridDim.x +
-        blockIdx.z * gridDim.x * gridDim.y
-    ;
-    int threadOffset = blockId * blockDim.x * blockDim.y * blockDim.z;
-    int threadId = 
-        threadIdx.x + 
-        threadIdx.y * blockDim.x +
-        threadIdx.z * blockDim.x * blockDim.y
-    ;
-    return threadOffset + threadId;
+    int row = threadIdx.y;
+    int column = threadIdx.x;
+    CUDA_GL::vec4 aVec = CUDA_GL::transpose(a[matrixID])[row];
+    CUDA_GL::vec4 bVec = b[matrixID][column];
+    c[matrixID][column][row] = CUDA_GL::dot(aVec, bVec);
 }
-__device__ void gpuDot(CUDA_GL::mat4* a, CUDA_GL::mat4* b, CUDA_GL::mat4* c, int matrixID)
-{
-    //int row;
-    //int column;
-    //CUDA_GL::vec4 aVec = CUDA_GL::transpose(a[matrixID])[row];
-    //CUDA_GL::vec4 bVec = b[matrixID][column];
-    //c[matrixID][row][column] = CUDA_GL::dot(aVec, bVec);
-}
-*/
 
 namespace CUDA_GL
 {
@@ -56,7 +39,8 @@ namespace CUDA_GL
                 threadIdx.z * blockDim.x * blockDim.y
             ;
             int id = threadOffset + threadId;
-            //gpuDot<<<4, 4>>>(a, b, c, id);
+            dim3 blockSize(4, 4, 1);
+            gpuDot<<<1, blockSize>>>(a, b, c, id);
         }
         __global__ void gpuMatMul(mat4* a, mat4* b, mat4* c)
         {

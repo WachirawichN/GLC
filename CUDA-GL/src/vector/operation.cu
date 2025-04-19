@@ -33,4 +33,32 @@ namespace CUDA_GL
             b[1] * (a[0] - a[2])
         );
     }
+
+    __host__ __device__ float dot(const vec2& a, const vec2& b)
+    {
+        float sum = 0;
+        for (int axis = 0; axis < 2; axis++)
+        {
+            sum += a[axis] * b[axis];
+        }
+        return sum;
+    }
+    __host__ __device__ float dot(const vec3& a, const vec3& b)
+    {
+        float sum = 0;
+        for (int axis = 0; axis < 3; axis++)
+        {
+            sum += a[axis] * b[axis];
+        }
+        return sum;
+    }
+    __host__ __device__ float dot(const vec4& a, const vec4& b)
+    {
+        float sum = 0;
+        for (int axis = 0; axis < 4; axis++)
+        {
+            sum += a[axis] * b[axis];
+        }
+        return sum;
+    }
 }

@@ -110,4 +110,8 @@ namespace CUDA_GL
     __host__ __device__ vec2 cross(vec2 a, vec2 b);
     __host__ __device__ vec3 cross(vec3 a, vec3 b);
     __host__ __device__ vec4 cross(vec4 a, vec4 b);
+
+    __host__ __device__ float dot(const vec2& a, const vec2& b);
+    __host__ __device__ float dot(const vec3& a, const vec3& b);
+    __host__ __device__ float dot(const vec4& a, const vec4& b);
 }

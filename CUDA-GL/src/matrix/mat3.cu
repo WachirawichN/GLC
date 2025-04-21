@@ -46,7 +46,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator+(const mat3& matrix)
+    __host__ __device__ mat3 mat3::operator+(const mat3& matrix) const
     {
         mat3 out;
         for (int i = 0; i < 3; ++i)
@@ -64,7 +64,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator-(const mat3& matrix)
+    __host__ __device__ mat3 mat3::operator-(const mat3& matrix) const
     {
         mat3 out;
         for (int i = 0; i < 3; ++i)
@@ -82,7 +82,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ mat3 mat3::operator*(float scalar)
+    __host__ __device__ mat3 mat3::operator*(float scalar) const
     {
         mat3 out;
         for (int i = 0; i < 3; ++i)
@@ -99,7 +99,7 @@ namespace CUDA_GL
         }
         return *this;
     }
-    __host__ __device__ mat3 mat3::operator*(const mat3& matrix)
+    __host__ __device__ mat3 mat3::operator*(const mat3& matrix) const
     {
         mat3 out;
         mat3 transposed = transpose(*this);
@@ -124,7 +124,7 @@ namespace CUDA_GL
         }
         return *this;
     }
-    __host__ __device__ vec3 mat3::operator*(const vec3& vector)
+    __host__ __device__ vec3 mat3::operator*(const vec3& vector) const
     {
         vec3 out;
         mat3 transposed = transpose(*this);
@@ -138,7 +138,7 @@ namespace CUDA_GL
         return out;
     }
 
-    __host__ __device__ mat3 mat3::operator/(float scalar)
+    __host__ __device__ mat3 mat3::operator/(float scalar) const
     {
         mat3 out;
         for (int i = 0; i < 3; ++i)

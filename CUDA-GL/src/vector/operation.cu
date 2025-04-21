@@ -87,15 +87,15 @@ namespace CUDA_GL
         #endif
     }
 
-    __host__ __device__ vec2 normalize(vec2& vector)
+    __host__ __device__ vec2 normalize(const vec2& vector)
     {
         return vector / length(vector);
     }
-    __host__ __device__ vec3 normalize(vec3& vector)
+    __host__ __device__ vec3 normalize(const vec3& vector)
     {
         return vector / length(vector);
     }
-    __host__ __device__ vec4 normalize(vec4& vector)
+    __host__ __device__ vec4 normalize(const vec4& vector)
     {
         return vector / length(vector);
     }

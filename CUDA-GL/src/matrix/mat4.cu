@@ -47,7 +47,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ mat4 mat4::operator+(const mat4& matrix)
+    __host__ __device__ mat4 mat4::operator+(const mat4& matrix) const
     {
         mat4 out;
         for (int i = 0; i < 4; ++i)
@@ -65,7 +65,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ mat4 mat4::operator-(const mat4& matrix)
+    __host__ __device__ mat4 mat4::operator-(const mat4& matrix) const
     {
         mat4 out;
         for (int i = 0; i < 4; ++i)
@@ -83,7 +83,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ mat4 mat4::operator*(float scalar)
+    __host__ __device__ mat4 mat4::operator*(float scalar) const
     {
         mat4 out;
         for (int i = 0; i < 4; ++i)
@@ -100,7 +100,7 @@ namespace CUDA_GL
         }
         return *this;
     }
-    __host__ __device__ mat4 mat4::operator*(const mat4& matrix)
+    __host__ __device__ mat4 mat4::operator*(const mat4& matrix) const
     {
         mat4 out;
         mat4 transposed = transpose(*this);
@@ -125,7 +125,7 @@ namespace CUDA_GL
         }
         return *this;
     }
-    __host__ __device__ vec4 mat4::operator*(const vec4& vector)
+    __host__ __device__ vec4 mat4::operator*(const vec4& vector) const
     {
         vec4 out;
         mat4 transposed = transpose(*this);
@@ -139,7 +139,7 @@ namespace CUDA_GL
         return out;
     }
 
-    __host__ __device__ mat4 mat4::operator/(float scalar)
+    __host__ __device__ mat4 mat4::operator/(float scalar) const
     {
         mat4 out;
         for (int i = 0; i < 4; ++i)

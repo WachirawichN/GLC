@@ -51,7 +51,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec4 vec4::operator+(float scalar)
+    __host__ __device__ vec4 vec4::operator+(float scalar) const
     {
         return *this + vec4(scalar);
     }
@@ -59,7 +59,7 @@ namespace CUDA_GL
     {
         return *this += vec4(scalar);
     }
-    __host__ __device__ vec4 vec4::operator+(const vec4& vector)
+    __host__ __device__ vec4 vec4::operator+(const vec4& vector) const
     {
         vec4 out;
         for (int i = 0; i < 4; i++)
@@ -77,7 +77,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec4 vec4::operator-(float scalar)
+    __host__ __device__ vec4 vec4::operator-(float scalar) const
     {
         return *this - vec4(scalar);
     }
@@ -85,7 +85,7 @@ namespace CUDA_GL
     {
         return *this -= vec4(scalar);
     }
-    __host__ __device__ vec4 vec4::operator-(const vec4& vector)
+    __host__ __device__ vec4 vec4::operator-(const vec4& vector) const
     {
         vec4 out;
         for (int i = 0; i < 4; i++)
@@ -103,7 +103,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec4 vec4::operator*(float scalar)
+    __host__ __device__ vec4 vec4::operator*(float scalar) const
     {
         vec4 out;
         for (int i = 0; i < 4; i++)
@@ -121,7 +121,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec4 vec4::operator/(float scalar)
+    __host__ __device__ vec4 vec4::operator/(float scalar) const
     {
         vec4 out;
         for (int i = 0; i < 4; i++)

@@ -50,7 +50,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec3 vec3::operator+(float scalar)
+    __host__ __device__ vec3 vec3::operator+(float scalar) const
     {
         return *this + vec3(scalar);
     }
@@ -58,7 +58,7 @@ namespace CUDA_GL
     {
         return *this += vec3(scalar);
     }
-    __host__ __device__ vec3 vec3::operator+(const vec3& vector)
+    __host__ __device__ vec3 vec3::operator+(const vec3& vector) const
     {
         vec3 out;
         for (int i = 0; i < 3; i++)
@@ -76,7 +76,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec3 vec3::operator-(float scalar)
+    __host__ __device__ vec3 vec3::operator-(float scalar) const
     {
         return *this - vec3(scalar);
     }
@@ -84,7 +84,7 @@ namespace CUDA_GL
     {
         return *this -= vec3(scalar);
     }
-    __host__ __device__ vec3 vec3::operator-(const vec3& vector)
+    __host__ __device__ vec3 vec3::operator-(const vec3& vector) const
     {
         vec3 out;
         for (int i = 0; i < 3; i++)
@@ -102,7 +102,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec3 vec3::operator*(float scalar)
+    __host__ __device__ vec3 vec3::operator*(float scalar) const
     {
         vec3 out;
         for (int i = 0; i < 3; i++)
@@ -120,7 +120,7 @@ namespace CUDA_GL
         return *this;
     }
 
-    __host__ __device__ vec3 vec3::operator/(float scalar)
+    __host__ __device__ vec3 vec3::operator/(float scalar) const
     {
         vec3 out;
         for (int i = 0; i < 3; i++)

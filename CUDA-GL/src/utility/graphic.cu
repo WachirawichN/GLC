@@ -15,7 +15,16 @@ namespace CUDA_GL
     // View (Host only)
     __host__ mat4 lookAt(const vec3& position, const vec3& target, const vec3& up)
     {
-        return mat4(1.0f);
+        vec3 direction = normalize(position - target);
+        vec3 right = normalize(cross(up, direction));
+        mat4 translationMat = translate(position * -1.0f);
+        mat4 rotationMat = CUDA_GL::mat4(
+            CUDA_GL::vec4(right[0], up[0], direction[0], 0.0f),
+            CUDA_GL::vec4(right[1], up[1], direction[1], 0.0f),
+            CUDA_GL::vec4(right[2], up[2], direction[2], 0.0f),
+            CUDA_GL::vec4(0.0f, 0.0f, 0.0f, 1.0f)
+        );
+        return rotationMat * translationMat;
     }
 
     // Model

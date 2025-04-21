@@ -13,7 +13,10 @@ namespace CUDA_GL
     {
         for (int i = 0; i < 3; i++)
         {
-            value[i] = vec3(v0);
+            for (int j = 0; j < 3; j++)
+            {
+                if (i == j) value[i][j] = v0;
+            }
         }
     }
     __host__ __device__ mat3::mat3(const vec3& v0, const vec3& v1, const vec3& v2)

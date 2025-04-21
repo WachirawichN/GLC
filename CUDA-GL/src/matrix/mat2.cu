@@ -15,7 +15,10 @@ namespace CUDA_GL
     {
         for (int i = 0; i < 2; i++)
         {
-            value[i] = vec2(v0);
+            for (int j = 0; j < 2; j++)
+            {
+                if (i == j) value[i][j] = v0;
+            }
         }
     }
     __host__ __device__ mat2::mat2(const vec2& v0, const vec2& v1)

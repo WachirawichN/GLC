@@ -13,7 +13,10 @@ namespace CUDA_GL
     {
         for (int i = 0; i < 4; i++)
         {
-            value[i] = vec4(v0);
+            for (int j = 0; j < 4; j++)
+            {
+                if (i == j) value[i][j] = v0;
+            }
         }
     }
     __host__ __device__ mat4::mat4(const vec4& v0, const vec4& v1, const vec4& v2, const vec4& v3)

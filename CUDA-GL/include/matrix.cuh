@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <type_traits>
+#include <concepts>
+
 #include "vector.cuh"
 
 // This will be weird due to how weird GLSL's matrix structure is. (Column first then Row)
@@ -18,12 +21,11 @@ namespace CUDA_GL
     class mat2
     {
         private:
-            vec2* value;
+            vec2 value[2];
         public:
             __host__ __device__ mat2();
             __host__ __device__ mat2(float v0);
             __host__ __device__ mat2(const vec2& v0, const vec2& v1);
-            __host__ __device__ ~mat2();
 
             __host__ __device__ vec2& operator [] (unsigned int index);
             __host__ __device__ const vec2& operator [] (unsigned int index) const;
@@ -49,12 +51,11 @@ namespace CUDA_GL
     class mat3
     {
         private:
-            vec3* value;
+            vec3 value[3];
         public:
             __host__ __device__ mat3();
             __host__ __device__ mat3(float v0);
             __host__ __device__ mat3(const vec3& v0, const vec3& v1, const vec3& v2);
-            __host__ __device__ ~mat3();
 
             __host__ __device__ vec3& operator [] (unsigned int index);
             __host__ __device__ const vec3& operator [] (unsigned int index) const;
@@ -80,12 +81,11 @@ namespace CUDA_GL
     class mat4
     {
         private:
-            vec4* value;
+            vec4 value[4];
         public:
             __host__ __device__ mat4();
             __host__ __device__ mat4(float v0);
             __host__ __device__ mat4(const vec4& v0, const vec4& v1, const vec4& v2, const vec4& v3);
-            __host__ __device__ ~mat4();
 
             __host__ __device__ vec4& operator [] (unsigned int index);
             __host__ __device__ const vec4& operator [] (unsigned int index) const;

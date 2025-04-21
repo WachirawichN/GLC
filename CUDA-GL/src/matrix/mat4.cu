@@ -1,12 +1,9 @@
 #include "../../include/matrix.cuh"
 
-#include "../../include/utility.cuh"
-
 namespace CUDA_GL
 {
     __host__ __device__ mat4::mat4()
     {
-        value = new vec4[4];
         for (int i = 0; i < 4; i++)
         {
             value[i] = vec4();
@@ -14,20 +11,17 @@ namespace CUDA_GL
     }
     __host__ __device__ mat4::mat4(float v0)
     {
-        value = new vec4[4];
         for (int i = 0; i < 4; i++)
         {
             value[i] = vec4(v0);
         }
     }
-    __host__ __device__ mat4::mat4(const vec4& v0, const vec4& v1, const vec4& v4, const vec4& v3)
+    __host__ __device__ mat4::mat4(const vec4& v0, const vec4& v1, const vec4& v2, const vec4& v3)
     {
-        value = new vec4[4] {v0, v1, v4, v3};
-    }
-    __host__ __device__ mat4::~mat4()
-    {
-        delete[] value;
-        value = NULL;
+        value[0] = v0;
+        value[1] = v1;
+        value[2] = v2;
+        value[3] = v3;
     }
 
     __host__ __device__ vec4& mat4::operator[](unsigned int index)
@@ -42,31 +36,10 @@ namespace CUDA_GL
     {
         if (this != &matrix)
         {
-            // Prevent memory leak
-            if (value)
-            {
-                delete[] value;
-                value = new vec4[4];
-            }
-
             for (int i = 0; i < 4; i++)
             {
                 value[i] = matrix[i];
             }
-
-            // Copy data - Using CUDA's memcpy if possible (More efficient, still contain a bug)
-            /*
-            #ifdef __CUDA_ARCH__
-                cudaMemcpy(
-                    value,
-                    matrix,
-                    3 * sizeof(vec3),
-                    cudaMemcpyDeviceToDevice
-                );
-            #else
-                std::copy(matrix[0], matrix[4], value);
-            #endif
-            */
         }
         return *this;
     }

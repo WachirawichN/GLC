@@ -6,7 +6,6 @@ namespace CUDA_GL
 {
     __host__ __device__ mat2::mat2()
     {
-        value = new vec2[2];
         for (int i = 0; i < 2; i++)
         {
             value[i] = vec2();
@@ -14,7 +13,6 @@ namespace CUDA_GL
     }
     __host__ __device__ mat2::mat2(float v0)
     {
-        value = new vec2[2];
         for (int i = 0; i < 2; i++)
         {
             value[i] = vec2(v0);
@@ -22,12 +20,8 @@ namespace CUDA_GL
     }
     __host__ __device__ mat2::mat2(const vec2& v0, const vec2& v1)
     {
-        value = new vec2[2] {v0, v1};
-    }
-    __host__ __device__ mat2::~mat2()
-    {
-        delete[] value;
-        value = NULL;
+        value[0] = v0;
+        value[1] = v1;
     }
 
     __host__ __device__ vec2& mat2::operator[](unsigned int index)
@@ -42,31 +36,10 @@ namespace CUDA_GL
     {
         if (this != &matrix)
         {
-            // Prevent memory leak
-            if (value)
-            {
-                delete[] value;
-                value = new vec2[2];
-            }
-
             for (int i = 0; i < 2; i++)
             {
                 value[i] = matrix[i];
             }
-
-            // Copy data - Using CUDA's memcpy if possible (More efficient, still contain a bug)
-            /*
-            #ifdef __CUDA_ARCH__
-                cudaMemcpy(
-                    value,
-                    matrix,
-                    3 * sizeof(vec3),
-                    cudaMemcpyDeviceToDevice
-                );
-            #else
-                std::copy(matrix[0], matrix[2], value);
-            #endif
-            */
         }
         return *this;
     }

@@ -1,12 +1,9 @@
 #include "../../include/matrix.cuh"
 
-#include "../../include/utility.cuh"
-
 namespace CUDA_GL
 {
     __host__ __device__ mat3::mat3()
     {
-        value = new vec3[3];
         for (int i = 0; i < 3; i++)
         {
             value[i] = vec3();
@@ -14,7 +11,6 @@ namespace CUDA_GL
     }
     __host__ __device__ mat3::mat3(float v0)
     {
-        value = new vec3[3];
         for (int i = 0; i < 3; i++)
         {
             value[i] = vec3(v0);
@@ -22,12 +18,9 @@ namespace CUDA_GL
     }
     __host__ __device__ mat3::mat3(const vec3& v0, const vec3& v1, const vec3& v2)
     {
-        value = new vec3[3] {v0, v1, v2};
-    }
-    __host__ __device__ mat3::~mat3()
-    {
-        delete[] value;
-        value = NULL;
+        value[0] = v0;
+        value[1] = v1;
+        value[2] = v2;
     }
 
     __host__ __device__ vec3& mat3::operator[](unsigned int index)
@@ -42,31 +35,10 @@ namespace CUDA_GL
     {
         if (this != &matrix)
         {
-            // Prevent memory leak
-            if (value)
-            {
-                delete[] value;
-                value = new vec3[3];
-            }
-
             for (int i = 0; i < 3; i++)
             {
                 value[i] = matrix[i];
             }
-
-            // Copy data - Using CUDA's memcpy if possible (More efficient, still contain a bug)
-            /*
-            #ifdef __CUDA_ARCH__
-                cudaMemcpy(
-                    value,
-                    matrix,
-                    3 * sizeof(vec3),
-                    cudaMemcpyDeviceToDevice
-                );
-            #else
-                std::copy(matrix[0], matrix[2], value);
-            #endif
-            */
         }
         return *this;
     }

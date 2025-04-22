@@ -68,7 +68,8 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "xtree": "cpp",
-        "glad.h": "c"
+        "glad.h": "c",
+        "cerrno": "cpp"
     },
     "cmake.sourceDirectory": "D:/Code/CUDA-GL/tests"
 }

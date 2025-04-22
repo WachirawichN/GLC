@@ -1,6 +1,11 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
+#include "graphic/shader.h"
+#include "graphic/VAO.h"
+#include "graphic/VBO.h"
+#include "graphic/EBO.h"
+
 #include <iostream>
 
 unsigned int wWidth = 640;
@@ -45,16 +50,55 @@ int main()
         return -1;
     }    
 
+    GLfloat vertices[] =
+	{
+		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
+		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
+		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // Upper corner
+		-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner left
+		0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner right
+		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
+	};
+    GLuint indices[] =
+    {
+        0, 3, 5,
+        3, 2, 4,
+        5, 4, 1
+    };
+
+    shader shaderProgram("shader/default.frag", "shader/default.vert");
+
+    VAO VAO1;
+    VAO1.bind();
+
+    VBO VBO1(vertices, sizeof(vertices));
+    EBO EBO1(indices, sizeof(indices));
+
+    VAO1.linkVBO(VBO1, 0);
+    VAO1.unbind();
+    VBO1.unbind();
+    EBO1.unbind();
+
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        shaderProgram.active();
+        VAO1.bind();
+        glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    VAO1.del();
+    VBO1.del();
+    EBO1.del();
+    shaderProgram.del();
+
+    glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
 }

@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "../../CUDA-GL/include/matrix.cuh"
-#include "../../CUDA-GL/include/utility.cuh"
-#include "../../CUDA-GL/include/vector.cuh"
+#include "matrix.cuh"
+#include "utility.cuh"
+#include "vector.cuh"
 
 __global__ void testKernel(CUDA_GL::mat4* translationMat, CUDA_GL::mat4* scalingMat, CUDA_GL::mat4* rotationMat, CUDA_GL::vec3* vecPow)
 {

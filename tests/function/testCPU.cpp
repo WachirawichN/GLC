@@ -2,9 +2,9 @@
 
 #include <cuda_runtime.h>
 
-#include "../../CUDA-GL/include/matrix.cuh"
-#include "../../CUDA-GL/include/utility.cuh"
-#include "../../CUDA-GL/include/vector.cuh"
+#include "matrix.cuh"
+#include "utility.cuh"
+#include "vector.cuh"
 
 int main()
 {

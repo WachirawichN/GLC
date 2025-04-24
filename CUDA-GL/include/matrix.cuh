@@ -109,6 +109,9 @@ namespace CUDA_GL
             __host__ friend std::ostream& operator << (std::ostream& os, const mat4& matrix);
     };
 
+    template<typename T>
+    concept matrixType = std::same_as<T, CUDA_GL::mat2> || std::same_as<T, CUDA_GL::mat3> || std::same_as<T, CUDA_GL::mat4>;
+
     // Matrix exclusive operation
     __host__ __device__ mat2 transpose(const mat2& matrix);
     __host__ __device__ mat3 transpose(const mat3& matrix);

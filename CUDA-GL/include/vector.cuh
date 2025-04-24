@@ -37,7 +37,7 @@ namespace CUDA_GL
             __host__ __device__ vec2& operator /= (float scalar);
 
             __host__ friend std::ostream& operator << (std::ostream& os, const vec2& vector);
-        };
+    };
     class vec3
     {
         private:
@@ -69,7 +69,7 @@ namespace CUDA_GL
             __host__ __device__ vec3& operator /= (float scalar);
             
             __host__ friend std::ostream& operator << (std::ostream& os, const vec3& vector);
-        };
+    };
     class vec4
     {
         private:
@@ -101,7 +101,10 @@ namespace CUDA_GL
             __host__ __device__ vec4& operator /= (float scalar);
 
             __host__ friend std::ostream& operator << (std::ostream& os, const vec4& vector);
-        };
+    };
+
+    template<typename T>
+    concept vectorType = std::same_as<T, CUDA_GL::vec2> || std::same_as<T, CUDA_GL::vec3> || std::same_as<T, CUDA_GL::vec4>;
 
     // Vector exclusive operation
     __host__ __device__ vec2 cross(const vec2& a, const vec2& b);

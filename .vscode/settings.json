@@ -69,7 +69,8 @@
         "thread": "cpp",
         "xtree": "cpp",
         "glad.h": "c",
-        "cerrno": "cpp"
+        "cerrno": "cpp",
+        "fstream": "cpp"
     },
     "cmake.sourceDirectory": "D:/Code/CUDA-GL/tests"
 }

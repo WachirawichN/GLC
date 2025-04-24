@@ -12,6 +12,13 @@ add_executable(TestOpenGL
     ${graphicSource}
 )
 
+# Required for device linking
+set_target_properties(TestOpenGL
+    PROPERTIES
+    LINKER_LANGUAGE CUDA
+    CUDA_SEPARABLE_COMPILATION ON
+)
+
 target_include_directories(TestOpenGL
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/include

@@ -7,7 +7,7 @@
 
 #include "vector.cuh"
 
-// This will be weird due to how weird GLSL's matrix structure is. (Column first then Row)
+// This will be weird due to how weird GLSL's matrix structure is. (Column major)
 // 3x3 Matrix example bruh
 // ┌ ┌   ┐ ┌   ┐ ┌   ┐ ┐
 // | | a | | d | | g | |

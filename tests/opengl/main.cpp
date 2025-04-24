@@ -116,7 +116,7 @@ int main()
         CUDA_GL::mat4 model = CUDA_GL::scale(std::sinf(rotation));
         model *= CUDA_GL::rotate(rotation, CUDA_GL::vec3(1.0f, 0.0f, 0.0f));
         CUDA_GL::mat4 view = CUDA_GL::lookAt(camPos, objPos, CUDA_GL::vec3(0.0f, 1.0f, 0.0f));
-        CUDA_GL::mat4 projection = CUDA_GL::perspective(90.0f, (float)wWidth / wHeight, 0.1f, 100.0f);
+        CUDA_GL::mat4 projection = CUDA_GL::perspective(90.0f, (float)(wWidth / wHeight), 0.1f, 100.0f);
 
         int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, CUDA_GL::unpack(model));

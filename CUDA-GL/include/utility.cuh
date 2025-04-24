@@ -15,16 +15,17 @@ namespace CUDA_GL
         Available for both matrix and vector
     ------------------------------------------*/
 
-    template<vectorType T>
     /**
      * @brief Raised vector to power of exponent.
      * 
      * Raised every element inside vector or matrix to the power of the exponent.
      * 
+     * @tparam T Any vector type (vec2, vec3, vec4).
      * @param vector V e c t o r .
      * @param exponent Exponent of the vector.
      * @return Raised vector.
      */
+    template<vectorType T>
     __host__ __device__ T pow(const T& vector, float exponent)
     {
         T out;
@@ -38,16 +39,17 @@ namespace CUDA_GL
         }
         return out;
     }
-    template<matrixType T>
     /**
      * @brief Raised matrix to power of exponent.
      * 
      * Raised every element inside vector or matrix to the power of the exponent.
      * 
+     * @tparam T Any matrix type (mat2, mat3, mat4).
      * @param matrix M a t r i x .
      * @param exponent Exponent of the matrix.
      * @return Raised matrix.
      */
+    template<matrixType T>
     __host__ __device__ T pow(const T& matrix, float exponent)
     {
         T out;
@@ -78,6 +80,13 @@ namespace CUDA_GL
     __host__ mat4 perspective(float fov, float aspect, float near, float far);
     /**
      * @brief Generate orthographic projection matrix. (Untested)
+     * @param left Left coordinate of the frustum(Usually 0.0f).
+     * @param right Right coordinate of the frustum.
+     * @param bottom Bottom coordinate of the frustum(Usually 0.0f).
+     * @param top Top coordinate of the frustum.
+     * @param near Length before the object will be clipped with camera.
+     * @param far Length before the object will be unrendered due to how far it is.
+     * @return Orthographic projection matrix.
      */
     __host__ mat4 ortho(float left, float right, float bottom, float top, float near, float far);
     /**
@@ -94,41 +103,61 @@ namespace CUDA_GL
     ------------------------------------------*/
 
     /**
-     * @brief Translate the input matrix or generate translation matrix.
-     * @param offset vector of how much translation we want.
-     * @param matrix matrix that we want to add translation to. (OPTIONAL)
-     * @return Translation matrix or translated version of the input matrix.
+     * @brief Generate translation matrix.
+     * @param offset Vector of how much translation we want.
+     * @return Translation matrix.
      */
     __host__ __device__ mat4 translate(const vec3& offset);
+    /**
+     * @overload
+     * @brief Apply translation into the matrix.
+     * @param offset Vector of how much translation we want.
+     * @param matrix Matrix to apply translation to.
+     * @return Translated version of the input matrix.
+     */
     __host__ __device__ mat4 translate(const vec3& offset, const mat4& matrix);
     /**
-     * @brief Rotate the input matrix or generate rotation matrix.
+     * @brief Generate rotation matrix.
      * @param angle How much angle we want to rotate.
-     * @param axis vector of axis we want to rotate.
-     * @param matrix matrix that we want to rotate. (OPTIONAL)
-     * @return Rotation matrix or rotated version of the input matrix.
+     * @param axis Vector of axis we want to rotate.
+     * @return Rotation matrix.
      */
     __host__ __device__ mat4 rotate(float angle, const vec3& axis);
+    /**
+     * @overload
+     * @brief Apply rotation to the input matrix.
+     * @param angle How much angle we want to rotate.
+     * @param axis Vector of axis we want to rotate.
+     * @param matrix Matrix that we want to apply rotation to.
+     * @return Rotated version of the input matrix.
+     */
     __host__ __device__ mat4 rotate(float angle, const vec3& axis, const mat4& matrix);
     /**
-     * @brief Scale the input matrix or generate scaling matrix.
+     * @brief Generate scaling matrix.
      * @param factor How much we want to scale on each axis.
-     * @param matrix matrix that we add scale to. (Scaling will be multiply on the old one) (OPTIONAL)
-     * @return Scaling matrix or scaled version of the input matrix.
+     * @return Scaling matrix.
      */
     __host__ __device__ mat4 scale(const vec3& factor);
+    /**
+     * @overload
+     * @brief Scale the input matrix.
+     * @param factor How much we want to scale on each axis.
+     * @param matrix Matrix we want to apply scaling to. (Scaling will be multiply on the old one)
+     * @return Scaled version of the input matrix.
+     */
     __host__ __device__ mat4 scale(const vec3& factor, const mat4& matrix);
 
     /*------------------------------------------
         Other funtions
     ------------------------------------------*/
 
-    template<vectorType T>
     /**
-     * @brief Unpack vector or matrix into array of float. Similar to value_ptr of GLM.
-     * @param vector V e c t o r .
+     * @brief Unpack vector into array of float. Similar to value_ptr of GLM.
+     * @tparam T Any vector type (vec2, vec3, vec4).
+     * @param vector Vector we want to unpack.
      * @return Pointer to array of float containing every values of the input vector.
      */
+    template<vectorType T>
     __host__ __device__ float* unpack(const T& vector)
     {
         static float out[sizeof(T) / sizeof(float)];
@@ -138,12 +167,14 @@ namespace CUDA_GL
         }
         return out;
     }
-    template<matrixType T>
     /**
-     * @brief Unpack vector or matrix into array of float. Similar to value_ptr of GLM.
-     * @param matrix M a t r i x .
+     * @overload
+     * @brief Unpack matrix into array of float. Similar to value_ptr of GLM.
+     * @tparam T Any matrix type (mat2, mat3, mat4).
+     * @param matrix Matrix we want to unpack.
      * @return Pointer to array of float containing every values of the input matrix.
      */
+    template<matrixType T>
     __host__ __device__ float* unpack(const T& matrix)
     {
         static float out[sizeof(T) / sizeof(float)];
@@ -161,5 +192,9 @@ namespace CUDA_GL
         }
         return out;
     }
+    /**
+     * @brief Get thread ID of current CUDA thread.
+     * @return Thread ID.
+     */
     __device__ int threadID();
 }

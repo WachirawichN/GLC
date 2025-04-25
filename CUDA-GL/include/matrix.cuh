@@ -4,6 +4,7 @@
 #include <string>
 #include <type_traits>
 #include <concepts>
+#include <cmath>
 
 #include "vector.cuh"
 
@@ -112,8 +113,32 @@ namespace CUDA_GL
     template<typename T>
     concept matrixType = std::same_as<T, CUDA_GL::mat2> || std::same_as<T, CUDA_GL::mat3> || std::same_as<T, CUDA_GL::mat4>;
 
-    // Matrix exclusive operation
-    __host__ __device__ mat2 transpose(const mat2& matrix);
-    __host__ __device__ mat3 transpose(const mat3& matrix);
-    __host__ __device__ mat4 transpose(const mat4& matrix);
+    /*------------------------------------------
+        Matrix exclusive functions
+    ------------------------------------------*/
+
+    /**
+     * @brief Transpose the input matrix.
+     * @tparam T Any matrix type (mat2, mat3, mat4).
+     * @param matrix Matrix we want to transpose.
+     * @return Transposed version of the input matrix.
+     */
+    template<matrixType T>
+    __host__ __device__ T transpose(const T& matrix)
+    {
+        T out;
+        #ifdef __CUDA_ARCH__
+            int size = (int)sqrtf(sizeof(T) / sizeof(float));
+        #else
+            int size = (int)std::sqrtf(sizeof(T) / sizeof(float));
+        #endif
+        for (int row = 0; row < size; row++)
+        {
+            for (int column = 0; column < size; column++)
+            {
+                out[row][column] = matrix[column][row];
+            }
+        }
+        return out;
+    }
 }

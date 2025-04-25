@@ -34,34 +34,6 @@ namespace CUDA_GL
         );
     }
 
-    __host__ __device__ float dot(const vec2& a, const vec2& b)
-    {
-        float sum = 0;
-        for (int axis = 0; axis < 2; axis++)
-        {
-            sum += a[axis] * b[axis];
-        }
-        return sum;
-    }
-    __host__ __device__ float dot(const vec3& a, const vec3& b)
-    {
-        float sum = 0;
-        for (int axis = 0; axis < 3; axis++)
-        {
-            sum += a[axis] * b[axis];
-        }
-        return sum;
-    }
-    __host__ __device__ float dot(const vec4& a, const vec4& b)
-    {
-        float sum = 0;
-        for (int axis = 0; axis < 4; axis++)
-        {
-            sum += a[axis] * b[axis];
-        }
-        return sum;
-    }
-
     __host__ __device__ float length(const vec2& vector)
     {
         #ifdef __CUDA_ARCH__
@@ -85,18 +57,5 @@ namespace CUDA_GL
         #else
             return std::sqrtf(std::powf(vector[0], 2.0f) + std::powf(vector[1], 2.0f) + std::powf(vector[2], 2.0f) + std::powf(vector[3], 2.0f));
         #endif
-    }
-
-    __host__ __device__ vec2 normalize(const vec2& vector)
-    {
-        return vector / length(vector);
-    }
-    __host__ __device__ vec3 normalize(const vec3& vector)
-    {
-        return vector / length(vector);
-    }
-    __host__ __device__ vec4 normalize(const vec4& vector)
-    {
-        return vector / length(vector);
     }
 }

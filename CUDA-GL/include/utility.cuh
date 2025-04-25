@@ -3,7 +3,6 @@
 #include <cmath>
 #include <type_traits>
 #include <concepts>
-#include <stdio.h>
 
 #include "matrix.cuh"
 #include "vector.cuh"
@@ -21,7 +20,7 @@ namespace CUDA_GL
      * Raised every element inside vector or matrix to the power of the exponent.
      * 
      * @tparam T Any vector type (vec2, vec3, vec4).
-     * @param vector V e c t o r .
+     * @param vector Vector we want to raise all the values to the power of exponent.
      * @param exponent Exponent of the vector.
      * @return Raised vector.
      */
@@ -45,7 +44,7 @@ namespace CUDA_GL
      * Raised every element inside vector or matrix to the power of the exponent.
      * 
      * @tparam T Any matrix type (mat2, mat3, mat4).
-     * @param matrix M a t r i x .
+     * @param matrix Matrix we want to raise all the values to the power of exponent.
      * @param exponent Exponent of the matrix.
      * @return Raised matrix.
      */

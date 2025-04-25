@@ -106,20 +106,78 @@ namespace CUDA_GL
     template<typename T>
     concept vectorType = std::same_as<T, CUDA_GL::vec2> || std::same_as<T, CUDA_GL::vec3> || std::same_as<T, CUDA_GL::vec4>;
 
-    // Vector exclusive operation
+    /*------------------------------------------
+        Vector exclusive functions
+    ------------------------------------------*/
+
+    /**
+     * @brief Perform cross product on two input vector.
+     * @param a Vector A.
+     * @param b Vector B.
+     * @return Vector which is result of performing cross product on two input vectors.
+     */
     __host__ __device__ vec2 cross(const vec2& a, const vec2& b);
+    /**
+     * @brief Perform cross product on two input vector.
+     * @param a Vector A.
+     * @param b Vector B.
+     * @return Vector which is result of performing cross product on two input vectors.
+     */
     __host__ __device__ vec3 cross(const vec3& a, const vec3& b);
+    /**
+     * @brief Perform cross product on two input vector.
+     * @param a Vector A.
+     * @param b Vector B.
+     * @return Vector which is result of performing cross product on two input vectors.
+     */
     __host__ __device__ vec4 cross(const vec4& a, const vec4& b);
 
-    __host__ __device__ float dot(const vec2& a, const vec2& b);
-    __host__ __device__ float dot(const vec3& a, const vec3& b);
-    __host__ __device__ float dot(const vec4& a, const vec4& b);
+    /**
+     * @brief Perform dot product on two input vector.
+     * @tparam T Any vector type (vec2, vec3, vec4).
+     * @param a Vector A.
+     * @param b Vector B.
+     * @return Result of dot product.
+     */
+    template<vectorType T>
+    __host__ __device__ float dot(const T& a, const T& b)
+    {
+        float sum = 0.0f;
+        for (int i = 0; i < (int)(sizeof(T) / sizeof(float)); i++)
+        {
+            sum += a[i] * b[i];
+        }
+        return sum;
+    }
 
+    /**
+     * @brief Calculate the length of input vector.
+     * @param a Vector we want to find the length of.
+     * @return Length of the vector.
+     */
     __host__ __device__ float length(const vec2& vector);
+    /**
+     * @brief Calculate the length of input vector.
+     * @param a Vector we want to find the length of.
+     * @return Length of the vector.
+     */
     __host__ __device__ float length(const vec3& vector);
+    /**
+     * @brief Calculate the length of input vector.
+     * @param a Vector we want to find the length of.
+     * @return Length of the vector.
+     */
     __host__ __device__ float length(const vec4& vector);
 
-    __host__ __device__ vec2 normalize(const vec2& vector);
-    __host__ __device__ vec3 normalize(const vec3& vector);
-    __host__ __device__ vec4 normalize(const vec4& vector);
+    /**
+     * @brief Normalize the input vector.
+     * @tparam T Any vector type (vec2, vec3, vec4).
+     * @param vector Vector we want to normalize.
+     * @return Normalized version of the input vector.
+     */
+    template<vectorType T>
+    __host__ __device__ T normalize(const T& vector)
+    {
+        return vector / length(vector);
+    }
 }

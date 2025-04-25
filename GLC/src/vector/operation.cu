@@ -1,6 +1,6 @@
 #include "../../include/vector.cuh"
 
-namespace CUDA_GL
+namespace GLC
 {
     __host__ __device__ vec2 cross(const vec2& a, const vec2& b)
     {

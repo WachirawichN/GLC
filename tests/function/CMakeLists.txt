@@ -16,5 +16,5 @@ set_target_properties(TestGPU
 )
 
 # Link test executable with the CUDA library
-target_link_libraries(TestCPU PRIVATE CUDA-GL)
-target_link_libraries(TestGPU PRIVATE CUDA-GL)
+target_link_libraries(TestCPU PRIVATE GLC)
+target_link_libraries(TestGPU PRIVATE GLC)

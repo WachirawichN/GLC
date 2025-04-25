@@ -7,7 +7,7 @@
 #include "matrix.cuh"
 #include "vector.cuh"
 
-namespace CUDA_GL
+namespace GLC
 {
     /*------------------------------------------
         Common math funtions

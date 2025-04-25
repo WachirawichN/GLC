@@ -17,7 +17,7 @@
 // └ └   ┘ └   ┘ └   ┘ ┘
 // Printing out matrix will result in slighty different formation than this tho, console doesn't support printing those special char.
 
-namespace CUDA_GL
+namespace GLC
 {
     class mat2
     {
@@ -111,7 +111,7 @@ namespace CUDA_GL
     };
 
     template<typename T>
-    concept matrixType = std::same_as<T, CUDA_GL::mat2> || std::same_as<T, CUDA_GL::mat3> || std::same_as<T, CUDA_GL::mat4>;
+    concept matrixType = std::same_as<T, GLC::mat2> || std::same_as<T, GLC::mat3> || std::same_as<T, GLC::mat4>;
 
     /*------------------------------------------
         Matrix exclusive functions

@@ -40,7 +40,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(wWidth, wHeight, "CUDA-GL Test", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(wWidth, wHeight, "GLC Test", NULL, NULL);
     if (!window)
     {
         std::cout << "Fail to create window." << std::endl;
@@ -92,8 +92,8 @@ int main()
 	double previousTime = glfwGetTime();
 
     const float radius = 2.0f;
-    CUDA_GL::vec3 camPos(std::sinf(previousTime) * radius, 0.0f, std::cosf(previousTime) * radius);
-    CUDA_GL::vec3 objPos(0.0f, 0.0f, 0.0f);
+    GLC::vec3 camPos(std::sinf(previousTime) * radius, 0.0f, std::cosf(previousTime) * radius);
+    GLC::vec3 objPos(0.0f, 0.0f, 0.0f);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -109,21 +109,21 @@ int main()
 		if (currentTime - previousTime >= 1 / 10)
 		{
 			rotation += 0.01f;
-            camPos = CUDA_GL::vec3(std::sinf(currentTime) * radius, 0.0f, std::cosf(currentTime) * radius);
+            camPos = GLC::vec3(std::sinf(currentTime) * radius, 0.0f, std::cosf(currentTime) * radius);
 			previousTime = currentTime;
 		}
 
-        CUDA_GL::mat4 model = CUDA_GL::scale(std::sinf(rotation));
-        model *= CUDA_GL::rotate(rotation, CUDA_GL::vec3(1.0f, 0.0f, 0.0f));
-        CUDA_GL::mat4 view = CUDA_GL::lookAt(camPos, objPos, CUDA_GL::vec3(0.0f, 1.0f, 0.0f));
-        CUDA_GL::mat4 projection = CUDA_GL::perspective(90.0f, (float)(wWidth / wHeight), 0.1f, 100.0f);
+        GLC::mat4 model = GLC::scale(std::sinf(rotation));
+        model *= GLC::rotate(rotation, GLC::vec3(1.0f, 0.0f, 0.0f));
+        GLC::mat4 view = GLC::lookAt(camPos, objPos, GLC::vec3(0.0f, 1.0f, 0.0f));
+        GLC::mat4 projection = GLC::perspective(90.0f, (float)(wWidth / wHeight), 0.1f, 100.0f);
 
         int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, CUDA_GL::unpack(model));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, GLC::unpack(model));
         int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, CUDA_GL::unpack(view));
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, GLC::unpack(view));
         int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
-        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, CUDA_GL::unpack(projection));
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, GLC::unpack(projection));
 
         VAO1.bind();
         glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);

@@ -1,6 +1,6 @@
 #include "../../include/utility.cuh"
 
-namespace CUDA_GL
+namespace GLC
 {
     __device__ int threadID()
     {

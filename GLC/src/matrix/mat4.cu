@@ -1,6 +1,6 @@
 #include "../../include/matrix.cuh"
 
-namespace CUDA_GL
+namespace GLC
 {
     __host__ __device__ mat4::mat4()
     {

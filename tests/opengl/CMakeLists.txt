@@ -28,7 +28,7 @@ target_include_directories(TestOpenGL
 # May needed Windows SDK to access opengl32.lib, or just swap to opengl32.dll which is already inside System32
 target_link_libraries(TestOpenGL
     PRIVATE
-    CUDA-GL
+    GLC
     ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/lib/glfw3.lib
     opengl32.lib
 )

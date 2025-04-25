@@ -1,6 +1,6 @@
 #include "../../include/vector.cuh"
 
-namespace CUDA_GL
+namespace GLC
 {
     __host__ __device__ vec3::vec3()
     {

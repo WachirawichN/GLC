@@ -4,7 +4,7 @@
 #include <cmath>
 #include <stdio.h>
 
-namespace CUDA_GL
+namespace GLC
 {
     class vec2
     {
@@ -104,7 +104,7 @@ namespace CUDA_GL
     };
 
     template<typename T>
-    concept vectorType = std::same_as<T, CUDA_GL::vec2> || std::same_as<T, CUDA_GL::vec3> || std::same_as<T, CUDA_GL::vec4>;
+    concept vectorType = std::same_as<T, GLC::vec2> || std::same_as<T, GLC::vec3> || std::same_as<T, GLC::vec4>;
 
     /*------------------------------------------
         Vector exclusive functions

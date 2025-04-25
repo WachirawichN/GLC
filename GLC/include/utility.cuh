@@ -9,10 +9,10 @@
 
 namespace GLC
 {
-    /*------------------------------------------
+    /*------------------------------------------------------------
         Common math funtions
-        Available for both matrix and vector
-    ------------------------------------------*/
+        Available for both matrix and vector.
+    ------------------------------------------------------------*/
 
     /**
      * @brief Raised vector to power of exponent.
@@ -64,9 +64,9 @@ namespace GLC
         return out;
     }
 
-    /*------------------------------------------
+    /*------------------------------------------------------------
         Graphic funtions
-    ------------------------------------------*/
+    ------------------------------------------------------------*/
 
     /**
      * @brief Generate perspective projection matrix.
@@ -97,9 +97,9 @@ namespace GLC
      */
     __host__ mat4 lookAt(const vec3& position, const vec3& target, const vec3& up);
 
-    /*------------------------------------------
+    /*------------------------------------------------------------
         Model funtions
-    ------------------------------------------*/
+    ------------------------------------------------------------*/
 
     /**
      * @brief Generate translation matrix.
@@ -146,9 +146,10 @@ namespace GLC
      */
     __host__ __device__ mat4 scale(const vec3& factor, const mat4& matrix);
 
-    /*------------------------------------------
+    /*------------------------------------------------------------
         Other funtions
-    ------------------------------------------*/
+        Some functions is available for both matrix and vector.
+    ------------------------------------------------------------*/
 
     /**
      * @brief Unpack vector into array of float. Similar to value_ptr of GLM.

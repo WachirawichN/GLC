@@ -113,9 +113,9 @@ namespace GLC
     template<typename T>
     concept matrixType = std::same_as<T, GLC::mat2> || std::same_as<T, GLC::mat3> || std::same_as<T, GLC::mat4>;
 
-    /*------------------------------------------
+    /*------------------------------------------------------------
         Matrix exclusive functions
-    ------------------------------------------*/
+    ------------------------------------------------------------*/
 
     /**
      * @brief Transpose the input matrix.

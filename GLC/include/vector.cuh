@@ -106,9 +106,9 @@ namespace GLC
     template<typename T>
     concept vectorType = std::same_as<T, GLC::vec2> || std::same_as<T, GLC::vec3> || std::same_as<T, GLC::vec4>;
 
-    /*------------------------------------------
+    /*------------------------------------------------------------
         Vector exclusive functions
-    ------------------------------------------*/
+    ------------------------------------------------------------*/
 
     /**
      * @brief Perform cross product on two input vector.

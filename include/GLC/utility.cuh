@@ -3,6 +3,8 @@
 #include <cmath>
 #include <type_traits>
 #include <concepts>
+#include <numbers>
+#include <math_constants.h>
 
 #include <GLC/matrix.cuh>
 #include <GLC/vector.cuh>
@@ -192,6 +194,12 @@ namespace GLC
         }
         return out;
     }
+    /**
+     * @brief Turn degree into radians.
+     * @param degree Degree we want to convert to radians.
+     * @return Degree that has been turned into radians.
+     */
+    __host__ __device__ float radians(float degree);
     /**
      * @brief Get thread ID of current CUDA thread.
      * @return Thread ID.

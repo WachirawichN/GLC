@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.0.0)
-project(GLC VERSION 0.1.0 LANGUAGES C CXX CUDA)
+project(GLC VERSION 0.2.0 LANGUAGES C CXX CUDA)
 
 # Enable separable compilation and device linking
 set(CMAKE_CUDA_SEPARABLE_COMPILATION ON)

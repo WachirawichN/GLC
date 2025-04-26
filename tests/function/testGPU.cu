@@ -23,6 +23,11 @@ __global__ void transformKernel(GLC::mat4* scaledMatrix, GLC::mat4* translatedMa
     translatedMatrix[0] = GLC::translate(GLC::vec3(1.0f, 2.0f, 3.0f), scaledMatrix[0]);
     rotatedMatrix[0] = GLC::rotate(1.0f, GLC::vec3(1.0f, 2.0f, 1.0f), translatedMatrix[0]);
 }
+__global__ void radiansKernel(float* radians)
+{
+    int id = GLC::threadID();
+    radians[id] = GLC::radians(id * 10.0f);
+}
 
 int main()
 {
@@ -110,6 +115,28 @@ int main()
         h_translatedMat = NULL;
         delete[] h_rotatedMat;
         h_rotatedMat = NULL;
+    }
+    {
+        int size = 10;
+        float* h_radians = new float[size];
+
+        float* d_radians;
+        cudaMalloc((void**)&d_radians, sizeof(float) * size);
+        
+        radiansKernel<<<1, size>>>(d_radians);
+        cudaDeviceSynchronize();
+
+        cudaMemcpy(h_radians, d_radians, sizeof(float) * size, cudaMemcpyDeviceToHost);
+        cudaFree(d_radians);
+
+        for (int i = 0; i < size; i++)
+        {
+            std::cout << h_radians[i] << " ";
+        }
+        std::cout << std::endl;
+
+        delete[] h_radians;
+        h_radians = NULL;
     }
     return 0;
 }

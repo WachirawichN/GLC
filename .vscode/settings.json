@@ -70,7 +70,8 @@
         "xtree": "cpp",
         "glad.h": "c",
         "cerrno": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "numbers": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}"
 }

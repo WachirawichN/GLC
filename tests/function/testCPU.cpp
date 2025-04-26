@@ -38,5 +38,11 @@ int main()
     tranformMat = GLC::rotate(1.0f, GLC::vec3(1.0f, 2.0f, 1.0f), tranformMat);
     std::cout << tranformMat << std::endl;
 
+    for (int i = 0; i < 10; i++)
+    {
+        std::cout << GLC::radians(i * 10.0f) << " ";
+    }
+    std::cout << std::endl;
+
     return 0;
 }

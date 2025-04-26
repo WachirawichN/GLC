@@ -4,8 +4,8 @@
 #include <type_traits>
 #include <concepts>
 
-#include "matrix.cuh"
-#include "vector.cuh"
+#include <GLC/matrix.cuh>
+#include <GLC/vector.cuh>
 
 namespace GLC
 {

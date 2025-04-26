@@ -72,5 +72,5 @@
         "cerrno": "cpp",
         "fstream": "cpp"
     },
-    "cmake.sourceDirectory": "D:/Code/GLC/tests"
+    "cmake.sourceDirectory": "${workspaceFolder}"
 }

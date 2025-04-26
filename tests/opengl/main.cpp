@@ -9,9 +9,9 @@
 #include "graphic/VBO.h"
 #include "graphic/EBO.h"
 
-#include "matrix.cuh"
-#include "vector.cuh"
-#include "utility.cuh"
+#include <GLC/matrix.cuh>
+#include <GLC/vector.cuh>
+#include <GLC/utility.cuh>
 
 
 unsigned int wWidth = 800;

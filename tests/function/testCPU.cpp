@@ -1,10 +1,9 @@
+#include <cuda_runtime.h>
 #include <iostream>
 
-#include <cuda_runtime.h>
-
-#include "matrix.cuh"
-#include "utility.cuh"
-#include "vector.cuh"
+#include <GLC/matrix.cuh>
+#include <GLC/vector.cuh>
+#include <GLC/utility.cuh>
 
 int main()
 {

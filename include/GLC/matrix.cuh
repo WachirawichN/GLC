@@ -25,7 +25,7 @@ namespace GLC
             vec2 x, y;
 
             __host__ __device__ mat2() : x(vec2(0.0f)), y(vec2(0.0f)) {}
-            __host__ __device__ mat2(float v0) : x(v0), y(v0) {}
+            __host__ __device__ mat2(float v0) : x(v0, 0.0f), y(0.0f, v0) {}
             __host__ __device__ mat2(const vec2& v0, const vec2& v1) : x(v0), y(v1) {}
 
             __host__ __device__ vec2& operator [] (unsigned int index);
@@ -54,7 +54,7 @@ namespace GLC
             vec3 x, y, z;
 
             __host__ __device__ mat3() : x(vec3(0.0f)), y(vec3(0.0f)), z(vec3(0.0f)) {}
-            __host__ __device__ mat3(float v0) : x(v0), y(v0), z(v0) {}
+            __host__ __device__ mat3(float v0) : x(v0, 0.0f, 0.0f), y(0.0f, v0, 0.0f), z(0.0f, 0.0f, v0) {}
             __host__ __device__ mat3(const vec3& v0, const vec3& v1, const vec3& v2) : x(v0), y(v1), z(v2) {}
 
             __host__ __device__ vec3& operator [] (unsigned int index);
@@ -83,7 +83,7 @@ namespace GLC
             vec4 x, y, z, w;
 
             __host__ __device__ mat4() : x(vec4(0.0f)), y(vec4(0.0f)), z(vec4(0.0f)), w(vec4(0.0f)) {}
-            __host__ __device__ mat4(float v0) : x(v0), y(v0), z(v0), w(v0) {}
+            __host__ __device__ mat4(float v0) : x(v0, 0.0f, 0.0f, 0.0f), y(0.0f, v0, 0.0f, 0.0f), z(0.0f, 0.0f, v0, 0.0f), w(0.0f, 0.0f, 0.0f, v0) {}
             __host__ __device__ mat4(const vec4& v0, const vec4& v1, const vec4& v2, const vec4& v3) : x(v0), y(v1), z(v2), w(v3) {}
 
             __host__ __device__ vec4& operator [] (unsigned int index);

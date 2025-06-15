@@ -1,4 +1,4 @@
-# Force TestCPU to be treated as a CUDA target
+# Force TestOpenGL to be treated as a CUDA target
 set_source_files_properties(main.cpp PROPERTIES LANGUAGE CUDA)
 
 # Graphic library (All about OpenGL)

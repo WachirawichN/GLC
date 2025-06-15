@@ -16,11 +16,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -rdc=true")
 
 # GLC library (compiled from .cu files)
-file(GLOB_RECURSE LIB_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/vector/*.cu
-    ${CMAKE_SOURCE_DIR}/src/matrix/*.cu
-    ${CMAKE_SOURCE_DIR}/src/utility/*.cu
-)
+file(GLOB_RECURSE LIB_SOURCES ${CMAKE_SOURCE_DIR}/src/*/*.*)
 
 add_library(GLC STATIC ${LIB_SOURCES})
 target_include_directories(GLC PUBLIC ${CMAKE_SOURCE_DIR}/include)

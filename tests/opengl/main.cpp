@@ -119,11 +119,11 @@ int main()
         GLC::mat4 projection = GLC::perspective(90.0f, (float)(wWidth / wHeight), 0.1f, 100.0f);
 
         int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, GLC::unpack(model));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, &model[0][0]);
         int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, GLC::unpack(view));
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
         int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
-        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, GLC::unpack(projection));
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, &projection[0][0]);
 
         VAO1.bind();
         glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);

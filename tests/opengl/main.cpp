@@ -104,28 +104,28 @@ int main()
         shaderProgram.active();
 
 		double currentTime = glfwGetTime();
-		if (currentTime - previousTime >= 1 / 10)
-		{
-			rotation += 0.01f;
-            camPos = GLC::vec3(std::sinf(currentTime) * radius, 0.0f, std::cosf(currentTime) * radius);
-			previousTime = currentTime;
-		}
+        double deltaTime = currentTime - previousTime;
+		previousTime = currentTime;
+        std::cout << "FPS: " << 1 / deltaTime << std::endl;
 
+		rotation += deltaTime * 1.0f;
+        camPos = GLC::vec3(std::sinf(currentTime) * radius, 0.0f, std::cosf(currentTime) * radius);
+        
         GLC::mat4 model = GLC::scale(std::sinf(rotation));
         model *= GLC::rotate(rotation, GLC::vec3(1.0f, 0.0f, 0.0f));
         GLC::mat4 view = GLC::lookAt(camPos, objPos, GLC::vec3(0.0f, 1.0f, 0.0f));
         GLC::mat4 projection = GLC::perspective(90.0f, (float)(wWidth / wHeight), 0.1f, 100.0f);
-
+        
         int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, GLC::unpack(model));
         int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, GLC::unpack(view));
         int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, GLC::unpack(projection));
-
+        
         VAO1.bind();
         glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);
-
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

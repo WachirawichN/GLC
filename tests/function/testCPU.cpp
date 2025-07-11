@@ -3,9 +3,7 @@
 #include <iostream>
 #include <type_traits>
 
-#include <GLC/matrix.cuh>
-#include <GLC/vector.cuh>
-#include <GLC/utility.cuh>
+#include <GLC/GLC.cuh>
 
 int main()
 {

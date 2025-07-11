@@ -1,8 +1,6 @@
 #include <iostream>
 
-#include <GLC/matrix.cuh>
-#include <GLC/vector.cuh>
-#include <GLC/utility.cuh>
+#include <GLC/GLC.cuh>
 
 __global__ void unpackKernel(GLC::vec4* vec, GLC::mat4* mat, float* unpackedVec, float* unpackedMat)
 {
